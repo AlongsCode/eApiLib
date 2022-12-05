@@ -2452,6 +2452,17 @@ BOOL MySetDefaultPrinter(string pPrinterName) {
 /***********************È¡ÆÁÄ»DPI********************/
 DOUBLE GetMoniterDPI(HWND hWnd)
 {
+    const HINSTANCE hInstWinSta = LoadLibrary(_T("SHCore.dll"));
+    if (hInstWinSta != NULL)
+    {
+        typedef HRESULT(WINAPI* FN_SET_PROCESS_DPI_AWARENESS)(INT nValue);
+
+        FN_SET_PROCESS_DPI_AWARENESS fnSetProcessDpiAwareness = (FN_SET_PROCESS_DPI_AWARENESS)GetProcAddress(hInstWinSta, "SetProcessDpiAwareness");
+        if (fnSetProcessDpiAwareness != NULL)
+            fnSetProcessDpiAwareness(2);
+
+        FreeLibrary(hInstWinSta);
+    }
     if (hWnd == NULL)
         hWnd = GetDesktopWindow();
 
