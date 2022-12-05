@@ -2452,6 +2452,7 @@ BOOL MySetDefaultPrinter(string pPrinterName) {
 /***********************È¡ÆÁÄ»DPI********************/
 DOUBLE GetMoniterDPI(HWND hWnd)
 {
+  
     if (hWnd == NULL)
         hWnd = GetDesktopWindow();
 
@@ -2461,6 +2462,11 @@ DOUBLE GetMoniterDPI(HWND hWnd)
     if (hInstWinSta != NULL)
     {
         typedef HRESULT(WINAPI* PFN_GDFM) (HMONITOR, INT, UINT*, UINT*);
+        typedef HRESULT(WINAPI* FN_SET_PROCESS_DPI_AWARENESS)(INT nValue);
+
+        FN_SET_PROCESS_DPI_AWARENESS fnSetProcessDpiAwareness = (FN_SET_PROCESS_DPI_AWARENESS)GetProcAddress(hInstWinSta, "SetProcessDpiAwareness");
+        if (fnSetProcessDpiAwareness != NULL)
+            fnSetProcessDpiAwareness(2);
         PFN_GDFM fnGetDpiForMonitor = (PFN_GDFM)GetProcAddress(hInstWinSta, "GetDpiForMonitor");
         if (fnGetDpiForMonitor != NULL)
         {
