@@ -2023,9 +2023,18 @@ static ARG_INFO SetDefaultPrinterArg[] =
 /*************************打开打印机对话框*****************************/
 static ARG_INFO OpenPrintSetDlgArg[] =
 {
-	  { _WT("对话框类型"), _WT("要打开的对话框类型。可以为以下两个常量值之一：0、#接口常量.标准打印设置对话框；1.打印机MFC对话框 2、#接口常量.打印属性对话框。默认值为0"),0 , 0,  SDT_INT, NULL, AS_DEFAULT_VALUE_IS_EMPTY },
+	  { _WT("对话框类型"), _WT("要打开的对话框类型。可以为以下两个常量值之一：0、#接口常量.标准打印设置对话框；1.打印机MFC对话框，废弃，对于MFC静态编译会出现问题 2、#接口常量.打印属性对话框。默认值为0"),0 , 0,  SDT_INT, NULL, AS_DEFAULT_VALUE_IS_EMPTY },
 	  { _WT("打印信息"), _WT("待取得的硬盘信息"),0 , 0, DTP_PRINT, NULL, AS_RECEIVE_VAR | AS_DEFAULT_VALUE_IS_EMPTY},
 };
+EXTERN_C void eapi_fnSetDefaultPrinter(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	if (pArgInf->m_pText)
+	{
+		pRetData->m_bool = MySetDefaultPrinter(pArgInf->m_pText);;
+		return;
+	}
+	pRetData->m_bool = 0;
+}
 EXTERN_C void eapi_fnOpenPrintSetDlg(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 
@@ -2451,6 +2460,7 @@ static CMD_INFO Commands[] = {
 		{ _WT("程序提权"), _WT("UpPrivilegeValue"), _WT("提升本程序的权限"),1 , 0,SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,0,0 },
 
 };
+//单独一个cpp文件，防止静态链接问题
 
 PFN_EXECUTE_CMD ExecuteCommand[] =
 {
@@ -2558,7 +2568,15 @@ static LIB_INFO LibInfo =
 	0,//常量指针
 	NULL//外部文件
 };
+extern "C" PLIB_INFO  GetNewInf()
 
+{
+
+	return (&LibInfo);
+
+};
+
+#endif
 EXTERN_C INT WINAPI eapi_ProcessNotifyLib(INT nMsg, DWORD dwParam1, DWORD dwParam2)
 {
 
@@ -2585,11 +2603,3 @@ EXTERN_C INT WINAPI eapi_ProcessNotifyLib(INT nMsg, DWORD dwParam1, DWORD dwPara
 	return ProcessNotifyLib(nMsg, dwParam1, dwParam2);
 
 }
-extern "C" PLIB_INFO  GetNewInf()
-
-{
-
-	return (&LibInfo);
-
-};
-#endif

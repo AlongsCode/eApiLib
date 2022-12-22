@@ -33,13 +33,13 @@ string ReplaceSubText(string str, string wcstr, string cstr, size_t bg, size_t n
 		return str;
 
 	}
-	char* 欲被替换的子文本_ = &wcstr[0];
+	char* wannstr = &wcstr[0];
 	//开始替换位置
-	size_t 起始位置 = bg;
-	if (起始位置 <= 1)
-		起始位置 = 0;
+	size_t beg = bg;
+	if (beg <= 1)
+		beg = 0;
 	else
-		起始位置 = bg - 1;
+		beg = bg - 1;
 	//判断开始位置
 	if (wcstr.empty())
 	{
@@ -47,7 +47,7 @@ string ReplaceSubText(string str, string wcstr, string cstr, size_t bg, size_t n
 
 	}
 	char* cp = &str[0];
-	char* pstart = cp + 起始位置;
+	char* pstart = cp + beg;
 	for (; *cp && cp < pstart; cp++)
 		if (*cp < 0) cp++; // 汉字
 
@@ -61,33 +61,32 @@ string ReplaceSubText(string str, string wcstr, string cstr, size_t bg, size_t n
 	};
 	//替换次数
 
-	size_t 替换进行次数 = num;
-	if (替换进行次数 == 0) {
-		替换进行次数 = 0x7fffffff;// 最大替换次数21亿
+	size_t neednum = num;
+	if (neednum == 0) {
+		neednum = 0x7fffffff;// 最大替换次数21亿
 	}
 	size_t nSublen = strlen(cstr.c_str());
 
 	// 开始计算
-	string 返回值;
-	int 第一个相同处的起始地址;
+	string ret;
 	int nPos;
 	char* pFirst = cp;
 	char* pLast = cp + nSlen;
 
 	if (Casesensitive) // 区分大小写
 	{
-		for (; 替换进行次数 > 0; 替换进行次数--)
+		for (; neednum > 0; neednum--)
 		{
 
-			nPos = SubtextReplaceAux(cp, 欲被替换的子文本_);
+			nPos = SubtextReplaceAux(cp, wannstr);
 
 			if (nPos == -1)
 				break;
 			if (cp + nPos - pFirst > 0) {
-				返回值.append(pFirst, cp + nPos - pFirst);
+				ret.append(pFirst, cp + nPos - pFirst);
 			}
 			if (nSublen > 0) {
-				返回值 = 返回值 + cstr;
+				ret = ret + cstr;
 
 			}
 			cp += nPos + ndlen;
@@ -96,16 +95,16 @@ string ReplaceSubText(string str, string wcstr, string cstr, size_t bg, size_t n
 	}
 	else
 	{
-		for (; 替换进行次数 > 0; 替换进行次数--)
+		for (; neednum > 0; neednum--)
 		{
-			nPos = SubtextReplaceAux(cp, 欲被替换的子文本_);
+			nPos = SubtextReplaceAux(cp, wannstr);
 			if (nPos == -1)
 				break;
 			if (cp + nPos - pFirst > 0)
-				返回值.append(pFirst, cp + nPos - pFirst);
+				ret.append(pFirst, cp + nPos - pFirst);
 
 			if (nSublen > 0)
-				返回值 = 返回值 + cstr;
+				ret = ret + cstr;
 
 			cp += nPos + ndlen;
 			pFirst = cp;
@@ -113,10 +112,10 @@ string ReplaceSubText(string str, string wcstr, string cstr, size_t bg, size_t n
 	}
 
 	if (pLast - pFirst > 0)
-		返回值.append(pFirst, pLast - pFirst);
+		ret.append(pFirst, pLast - pFirst);
 
 	// 复制计算结果
-	return 返回值;
+	return ret;
 }
 
 vector<string> EnumRegistryKey(HKEY root, string path)
@@ -289,7 +288,7 @@ bool DeleteRightMenu(string Rangeorextensiontobeused, string Title) {
 	{
 		return false;
 	}
-	
+
 	if (!EnumRegistryKey(HKEY_CLASSES_ROOT, "\\" + Title).empty())
 	{
 		DleteMore(Title, HKEY_CLASSES_ROOT, "", hKey, "\\" + Title);

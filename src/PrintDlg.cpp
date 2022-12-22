@@ -1,11 +1,11 @@
 //#define _AFXDLL
 #include<string>
-
-#include<afxdlgs.h>
-#include<Winspool.h>
-#pragma comment(lib,"Winspool.lib")
+//
+//#include<afxdlgs.h>
+//#include<Winspool.h>
+//#pragma comment(lib,"Winspool.lib")
 #include<windows.h>
-#include"elib/lib2.h"
+//#include"elib/lib2.h"
 using namespace std;
 //MFC命令，少用
 string MyGetDefaultPrinter();
@@ -162,40 +162,40 @@ int  CPaperSizeToE(short CPaperSize)
 	return result;
 }
 int  OpenPrintSetupDlg(DEVMODE  ININFO, MYPRINTINFO* OUTINFO, BOOL ONLYSET) {
-	CPrintDialog Dlg(ONLYSET);
-	HANDLE phPrinter;
-	if (OpenPrinter((LPSTR)ININFO.dmDeviceName, &phPrinter, 0) || !phPrinter) {
-		LONG DataLenth = DocumentProperties(0, phPrinter, (LPSTR)ININFO.dmDeviceName, 0, 0, 0);
-		if (DataLenth > 0)
-		{
+	//CPrintDialog Dlg(ONLYSET);
+	//HANDLE phPrinter;
+	//if (OpenPrinter((LPSTR)ININFO.dmDeviceName, &phPrinter, 0) || !phPrinter) {
+	//	LONG DataLenth = DocumentProperties(0, phPrinter, (LPSTR)ININFO.dmDeviceName, 0, 0, 0);
+	//	if (DataLenth > 0)
+	//	{
 
-			PDEVMODE OutData = (PDEVMODE)GlobalAlloc(GMEM_ZEROINIT, DataLenth);
+	//		PDEVMODE OutData = (PDEVMODE)GlobalAlloc(GMEM_ZEROINIT, DataLenth);
 
-			if (OutData)
-			{
-				if (DocumentProperties(0, phPrinter, (LPSTR)ININFO.dmDeviceName, OutData, 0, DM_OUT_BUFFER) == IDOK)
-				{
-					memcpy(OutData, &ININFO, sizeof(DEVMODE));
-					Dlg.m_pd.hDevMode = OutData;
-					if (Dlg.DoModal() == IDOK)
-					{
-						OutData = Dlg.GetDevMode();
-						OUTINFO->DeviceName = eapi_CloneTextData((LPSTR)OutData->dmDeviceName);
-						OUTINFO->Orientation = OutData->dmOrientation;
-						OUTINFO->PaperSize = CPaperSizeToE(OutData->dmPaperSize);
-						OUTINFO->PaperWidth = OutData->dmPaperWidth;
-						OUTINFO->PaperLength = OutData->dmPaperLength;
-						OUTINFO->Copies = OutData->dmCopies;
-						if (phPrinter) ClosePrinter(phPrinter);
-						GlobalFree(OutData);//内部重新realloc，Print内部自动释放
-						return 1;
-					}
-				}
-				GlobalFree(OutData);
-			}
-		}
-		ClosePrinter(phPrinter);
-	}
+	//		if (OutData)
+	//		{
+	//			if (DocumentProperties(0, phPrinter, (LPSTR)ININFO.dmDeviceName, OutData, 0, DM_OUT_BUFFER) == IDOK)
+	//			{
+	//				memcpy(OutData, &ININFO, sizeof(DEVMODE));
+	//				Dlg.m_pd.hDevMode = OutData;
+	//				if (Dlg.DoModal() == IDOK)
+	//				{
+	//					OutData = Dlg.GetDevMode();
+	//					OUTINFO->DeviceName = eapi_CloneTextData((LPSTR)OutData->dmDeviceName);
+	//					OUTINFO->Orientation = OutData->dmOrientation;
+	//					OUTINFO->PaperSize = CPaperSizeToE(OutData->dmPaperSize);
+	//					OUTINFO->PaperWidth = OutData->dmPaperWidth;
+	//					OUTINFO->PaperLength = OutData->dmPaperLength;
+	//					OUTINFO->Copies = OutData->dmCopies;
+	//					if (phPrinter) ClosePrinter(phPrinter);
+	//					GlobalFree(OutData);//内部重新realloc，Print内部自动释放
+	//					return 1;
+	//				}
+	//			}
+	//			GlobalFree(OutData);
+	//		}
+	//	}
+	//	ClosePrinter(phPrinter);
+	//}
 	return  2;
 }
 
@@ -324,12 +324,3 @@ INT OpenPrintSetDlg(INT Type, MYPRINTINFO* pPrintInfo) {
 
 
 
-EXTERN_C void eapi_fnSetDefaultPrinter(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
-{
-	if (pArgInf->m_pText)
-	{
-		pRetData->m_bool = MySetDefaultPrinter(pArgInf->m_pText);;
-		return;
-	}
-	pRetData->m_bool = 0;
-}

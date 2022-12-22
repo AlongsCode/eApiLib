@@ -5,32 +5,22 @@ VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eApiLib", "eApiLib.vcxproj", "{5583EF31-FE1A-43C9-843E-8D87D0E287F9}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "static_lib", "..\static_lib\static_lib.vcxproj", "{205C0972-3784-4BD5-8F99-887CE9510762}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
-		Release|x64 = Release|x64
-		Release|x86 = Release|x86
+		Lib|x64 = Lib|x64
+		Lib|x86 = Lib|x86
+		Static_Lib|x64 = Static_Lib|x64
+		Static_Lib|x86 = Static_Lib|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5583EF31-FE1A-43C9-843E-8D87D0E287F9}.Debug|x64.ActiveCfg = Release|x64
-		{5583EF31-FE1A-43C9-843E-8D87D0E287F9}.Debug|x64.Build.0 = Release|x64
-		{5583EF31-FE1A-43C9-843E-8D87D0E287F9}.Debug|x86.ActiveCfg = Release|Win32
-		{5583EF31-FE1A-43C9-843E-8D87D0E287F9}.Debug|x86.Build.0 = Release|Win32
-		{5583EF31-FE1A-43C9-843E-8D87D0E287F9}.Release|x64.ActiveCfg = Release|x64
-		{5583EF31-FE1A-43C9-843E-8D87D0E287F9}.Release|x64.Build.0 = Release|x64
-		{5583EF31-FE1A-43C9-843E-8D87D0E287F9}.Release|x86.ActiveCfg = Release|Win32
-		{5583EF31-FE1A-43C9-843E-8D87D0E287F9}.Release|x86.Build.0 = Release|Win32
-		{205C0972-3784-4BD5-8F99-887CE9510762}.Debug|x64.ActiveCfg = Debug|x64
-		{205C0972-3784-4BD5-8F99-887CE9510762}.Debug|x64.Build.0 = Debug|x64
-		{205C0972-3784-4BD5-8F99-887CE9510762}.Debug|x86.ActiveCfg = Debug|Win32
-		{205C0972-3784-4BD5-8F99-887CE9510762}.Debug|x86.Build.0 = Debug|Win32
-		{205C0972-3784-4BD5-8F99-887CE9510762}.Release|x64.ActiveCfg = Release|x64
-		{205C0972-3784-4BD5-8F99-887CE9510762}.Release|x64.Build.0 = Release|x64
-		{205C0972-3784-4BD5-8F99-887CE9510762}.Release|x86.ActiveCfg = Release|Win32
-		{205C0972-3784-4BD5-8F99-887CE9510762}.Release|x86.Build.0 = Release|Win32
+		{5583EF31-FE1A-43C9-843E-8D87D0E287F9}.Lib|x64.ActiveCfg = Lib|x64
+		{5583EF31-FE1A-43C9-843E-8D87D0E287F9}.Lib|x64.Build.0 = Lib|x64
+		{5583EF31-FE1A-43C9-843E-8D87D0E287F9}.Lib|x86.ActiveCfg = Lib|Win32
+		{5583EF31-FE1A-43C9-843E-8D87D0E287F9}.Lib|x86.Build.0 = Lib|Win32
+		{5583EF31-FE1A-43C9-843E-8D87D0E287F9}.Static_Lib|x64.ActiveCfg = Static_Lib|x64
+		{5583EF31-FE1A-43C9-843E-8D87D0E287F9}.Static_Lib|x64.Build.0 = Static_Lib|x64
+		{5583EF31-FE1A-43C9-843E-8D87D0E287F9}.Static_Lib|x86.ActiveCfg = Static_Lib|Win32
+		{5583EF31-FE1A-43C9-843E-8D87D0E287F9}.Static_Lib|x86.Build.0 = Static_Lib|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
