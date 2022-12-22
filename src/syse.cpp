@@ -325,10 +325,10 @@ BOOL KillProcess(char* TEXT)
 {
 	DWORD dwProcessId = 0;
 	bool result = false;
-	HWND 窗口句柄 = FindWindowA(0, TEXT);
-	if (窗口句柄)
+	HWND _hwnd = FindWindowA(0, TEXT);
+	if (_hwnd)
 	{
-		GetWindowThreadProcessId(窗口句柄, &dwProcessId);
+		GetWindowThreadProcessId(_hwnd, &dwProcessId);
 	}
 	HANDLE hSnap = CreateToolhelp32Snapshot(2u, 0);
 	PROCESSENTRY32 pe = { 0 };
@@ -2172,20 +2172,20 @@ BOOL  NetSendMessage(string Target, string _msg) {
 
 /**************************取网络共享资源列表************************/
 vector<string>GetShareResourceList(string computer, int type) {
-	vector<string> 所有网络工作组;
+	vector<string> allnetarr;
 	vector<string> result;
 	if (!computer.empty())
 	{
-		所有网络工作组.push_back(computer);
+		allnetarr.push_back(computer);
 	}
 	else
 	{
-		所有网络工作组 = GetComputerList(string());
+		allnetarr = GetComputerList(string());
 	}
-	if (所有网络工作组.size() > 0)
+	if (allnetarr.size() > 0)
 	{
 		NETRESOURCEA NetResource;    HANDLE hEnum;
-		for (size_t i = 0; i < 所有网络工作组.size(); i++)
+		for (size_t i = 0; i < allnetarr.size(); i++)
 		{
 			NetResource.lpRemoteName = (LPSTR)computer.c_str();
 			if (!WNetOpenEnumA(RESOURCE_GLOBALNET, type, RESOURCEUSAGE_CONTAINER, &NetResource, &hEnum))
