@@ -278,7 +278,7 @@ static ARG_INFO GetHDInfoArg[] =
 EXTERN_C void eapi_fnGetHDInfo(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	PHDINFO pHDInfo = *(PHDINFO*)pArgInf[0].m_pCompoundData;
-	INT type=0;
+	INT type = 0;
 	if (pArgInf[1].m_dtDataType)
 	{
 		type = pArgInf[1].m_int;
@@ -330,9 +330,9 @@ EXTERN_C void eapi_fnGetDrivesList(PMDATA_INF pRetData, INT iArgCount, PMDATA_IN
 	{
 		type = pArgInf->m_int;
 	}
-	
+
 	vector<string> DriveList = GetDrivesList(type);
-	if (DriveList.size()<1)
+	if (DriveList.size() < 1)
 	{
 		pRetData->m_pAryData = E_NULLARRAY();
 		return;
@@ -408,9 +408,9 @@ static ARG_INFO KillProcessArg[] =
 EXTERN_C void eapi_fnKillProcess(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	BOOL ret = FALSE;
-	if (pArgInf->m_dtDataType ==SDT_TEXT)
+	if (pArgInf->m_dtDataType == SDT_TEXT)
 	{
-		ret =KillProcess(pArgInf->m_pText);
+		ret = KillProcess(pArgInf->m_pText);
 	}
 	else if (true)
 	{
@@ -427,10 +427,10 @@ static ARG_INFO GetDllListArg[] =
 EXTERN_C void eapi_fnGetDllList(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	INT ID = -1;
-	if (pArgInf->m_dtDataType==SDT_INT )
+	if (pArgInf->m_dtDataType == SDT_INT)
 	{
 		ID = pArgInf->m_int;
-		
+
 	}
 	vector<string> DLLList = GetDllList(ID);
 	if (DLLList.size() < 1)
@@ -514,13 +514,13 @@ static ARG_INFO GetCpuInfoArg[] =
 EXTERN_C void eapi_fnGetCpuInfo(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	PCPUINFO pCpuInfo = *(PCPUINFO*)pArgInf[0].m_pCompoundData;
-	pRetData->m_bool=GetCpuInfo(pCpuInfo);
+	pRetData->m_bool = GetCpuInfo(pCpuInfo);
 }
 /*************************取CPU占用率****************************/
 
 EXTERN_C void eapi_fnGetCpuUsges(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
-	pRetData->m_double=GetCpuUsges();
+	pRetData->m_double = GetCpuUsges();
 }
 /*************************取内存容量信息****************************/
 static ARG_INFO GetMemoryInfoArg[] =
@@ -561,7 +561,7 @@ static ARG_INFO AddRightMenuArg[] =
 {
 	  { _WT("作用的区域或扩展名"), _WT("右键菜单在什么位置出现，例如指定:.txt,那么右键.txt文件时才会出现添加的菜单，“ * ”：所有地方 ；“D”：桌面右键；“URL”：文件夹右键；“SAVER”：文件右键；“.*”：指定后缀名右键，按照.*的格式写，不存在则创建（如.txt）,默认所有地方生效"),0 , 0, SDT_TEXT, NULL,AS_DEFAULT_VALUE_IS_EMPTY },
  { _WT("右键菜单标题"), _WT("右键后显示的标题，同时为类名，删除时指定此参数即可"),0 , 0, SDT_TEXT, NULL,NULL },
-     { _WT("点击后执行的命令行"), _WT("点击右键菜单触发的命令，如在.txt文件添加\"用易运行\"并绑定命令 run e.exe 文件名 点击后就会指定运行命令行"),0 , 0, SDT_TEXT, NULL,AS_DEFAULT_VALUE_IS_EMPTY },
+	 { _WT("点击后执行的命令行"), _WT("点击右键菜单触发的命令，如在.txt文件添加\"用易运行\"并绑定命令 run e.exe 文件名 点击后就会指定运行命令行"),0 , 0, SDT_TEXT, NULL,AS_DEFAULT_VALUE_IS_EMPTY },
 { _WT("快捷按键"), _WT("指定右键后载弹种按下某键可以快捷调用此菜单，直接填A-Z中的一个就好"),0 , 0, SDT_TEXT, NULL,AS_DEFAULT_VALUE_IS_EMPTY },
 { _WT("图标路径"), _WT("指定图标路径,.ico图标路径/.exe程序路径，会自动读取图标"),0 , 0, SDT_TEXT, NULL,AS_DEFAULT_VALUE_IS_EMPTY },
 { _WT("仅shift显示"), _WT("是否在只按住SHIFT的情况下显示（只在一级菜单中有效），默认为假"),0 , 0, SDT_BOOL, NULL,AS_DEFAULT_VALUE_IS_EMPTY },
@@ -569,7 +569,7 @@ static ARG_INFO AddRightMenuArg[] =
 };
 EXTERN_C void eapi_fnAddRightMenu(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
-	string RangeOrExtName="*", title, commandline, shortkey, icon;
+	string RangeOrExtName = "*", title, commandline, shortkey, icon;
 	BOOL shiftdisplay = FALSE;
 	if (pArgInf[0].m_dtDataType && pArgInf[0].m_pText)
 	{
@@ -646,7 +646,7 @@ EXTERN_C void eapi_fnSetAutoRun(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF p
 		Path = pArgInf[1].m_pText;
 
 	}
-	if (pArgInf[2].m_dtDataType )
+	if (pArgInf[2].m_dtDataType)
 	{
 		isres = pArgInf[2].m_int == 0 ? TRUE : FALSE;
 	}
@@ -661,7 +661,7 @@ EXTERN_C void eapi_fnDeleteTempFile(PMDATA_INF pRetData, INT iArgCount, PMDATA_I
 {
 	signed int type = 0;;
 	if (pArgInf->m_dtDataType || pArgInf->m_int >= 0 || pArgInf->m_int <= 3) {
-	
+
 		type = pArgInf->m_int;
 	}
 	pRetData->m_bool = DeleteTempFile(type);
@@ -674,7 +674,7 @@ static ARG_INFO ClearHistoryArg[] =
 EXTERN_C void eapi_fnClearHistory(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	signed int type = 0;;
-	if (pArgInf->m_dtDataType || pArgInf->m_int >= 0 || pArgInf->m_int <=9) {
+	if (pArgInf->m_dtDataType || pArgInf->m_int >= 0 || pArgInf->m_int <= 9) {
 
 		type = pArgInf->m_int;
 	}
@@ -761,7 +761,7 @@ EXTERN_C void eapi_fnGetImageWidth(PMDATA_INF pRetData, INT iArgCount, PMDATA_IN
 	}
 	else if (pArgInf->m_dtDataType == SDT_BIN)
 	{
-		
+
 		pRetData->m_int = GetImageSize(pArgInf->m_pBin).cx;
 	}
 	else
@@ -773,7 +773,7 @@ EXTERN_C void eapi_fnGetImageWidth(PMDATA_INF pRetData, INT iArgCount, PMDATA_IN
 
 EXTERN_C void eapi_fnGetImageHeight(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
-	
+
 	if (pArgInf->m_dtDataType == SDT_TEXT && pArgInf->m_pText) {
 
 		pRetData->m_int = GetImageSize(pArgInf->m_pText).cy;
@@ -816,7 +816,7 @@ EXTERN_C void eapi_fnGetIconFromResource(PMDATA_INF pRetData, INT iArgCount, PMD
 
 		SaveFileName = pArgInf[2].m_pText;
 	}
-	if (pArgInf[3].m_dtDataType && pArgInf[3].m_int >= 0 )
+	if (pArgInf[3].m_dtDataType && pArgInf[3].m_int >= 0)
 	{
 		Index = pArgInf[3].m_int;
 	}
@@ -841,7 +841,7 @@ static ARG_INFO AddButtonToIEArg[] =
 };
 EXTERN_C void eapi_fnAddButtonToIE(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
-	string ButtonTitle, Icon,Comline,HotButton;
+	string ButtonTitle, Icon, Comline, HotButton;
 	BOOL IsVisible = TRUE;
 
 	if (pArgInf->m_pText) {
@@ -851,7 +851,7 @@ EXTERN_C void eapi_fnAddButtonToIE(PMDATA_INF pRetData, INT iArgCount, PMDATA_IN
 	if (pArgInf[1].m_pText)
 	{
 		Icon = pArgInf[1].m_pText;
-		HotButton= pArgInf[1].m_pText;
+		HotButton = pArgInf[1].m_pText;
 	}
 	if (pArgInf[2].m_pText)
 	{
@@ -888,7 +888,7 @@ EXTERN_C void eapi_fnCreateProgramGroup(PMDATA_INF pRetData, INT iArgCount, PMDA
 	int pos = 11;
 	if (pArgInf[1].m_dtDataType && pArgInf[1].m_int) {
 
-		if (pArgInf[1].m_int== 2)
+		if (pArgInf[1].m_int == 2)
 		{
 			int pos = 16;
 		}
@@ -972,7 +972,7 @@ EXTERN_C void eapi_fnCreateProgramItem(PMDATA_INF pRetData, INT iArgCount, PMDAT
 static ARG_INFO GetShortCutTargetArg[] =
 {
 	{ _WT("快捷方式文件名"), _WT(""),0 , 0, SDT_TEXT, NULL,NULL },
-	{ _WT("目标"), _WT("快捷方式文件名绑定的程序路径"),0 , 0, SDT_TEXT, NULL,AS_DEFAULT_VALUE_IS_EMPTY| AS_RECEIVE_VAR},
+	{ _WT("目标"), _WT("快捷方式文件名绑定的程序路径"),0 , 0, SDT_TEXT, NULL,AS_DEFAULT_VALUE_IS_EMPTY | AS_RECEIVE_VAR},
 		{ _WT("参数"), _WT("默认参数"),0 , 0, SDT_TEXT, NULL,AS_DEFAULT_VALUE_IS_EMPTY | AS_RECEIVE_VAR },
 	{ _WT("启始位置"), _WT("快捷方式的上级目录"),0 , 0, SDT_TEXT, NULL,AS_DEFAULT_VALUE_IS_EMPTY | AS_RECEIVE_VAR},
 	{ _WT("图标"), _WT("返回的文本格式为：图标所属文件 + , + 图标序号（0为第一个），例如：“c:\\x.exe,1”。"),0 , 0, SDT_TEXT, NULL,AS_DEFAULT_VALUE_IS_EMPTY | AS_RECEIVE_VAR},
@@ -984,23 +984,23 @@ static ARG_INFO GetShortCutTargetArg[] =
 EXTERN_C void eapi_fnGetShortCutTarget(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 
-	
-	wstring Name, Path, Arg, Dir,Icon, KeyStr, Remark; int RunMode=0, Key = 0;
-	if (pArgInf[0].m_dtDataType==SDT_TEXT && pArgInf[0].m_pText)
+
+	wstring Name, Path, Arg, Dir, Icon, KeyStr, Remark; int RunMode = 0, Key = 0;
+	if (pArgInf[0].m_dtDataType == SDT_TEXT && pArgInf[0].m_pText)
 	{
 		Name = A2W(pArgInf[0].m_pText);
 	}
 	else
 	{
-		return ;
+		return;
 	}
-	
+
 	if (pArgInf[6].m_dtDataType == SDT_TEXT)
 	{
 		GetShortCutTarget(Name, &Path, &Arg, &Dir, &Icon, &RunMode, &KeyStr, &Remark);
 
 	}
-	else 
+	else
 	{
 		GetShortCutTarget(Name, &Path, &Arg, &Dir, &Icon, &RunMode, &Key, &Remark);
 
@@ -1055,7 +1055,7 @@ EXTERN_C void eapi_fnGetShortCutTarget(PMDATA_INF pRetData, INT iArgCount, PMDAT
 		eapi_MFree(*pInf->m_ppText);
 		*pInf->m_ppText == W2Estr(Remark);
 	}
-	
+
 }
 
 /*/************************取消自动运行****************************/
@@ -1077,13 +1077,13 @@ static ARG_INFO sprintfArg[] =
 EXTERN_C void eapi_fnsprintf(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 
-	if (pArgInf->m_dtDataType==SDT_TEXT && strlen(pArgInf->m_pText)>0 ) {
+	if (pArgInf->m_dtDataType == SDT_TEXT && strlen(pArgInf->m_pText) > 0) {
 
 		pRetData->m_dtDataType = SDT_TEXT;
 		int previous = strlen(pArgInf->m_pText);
-		char* Ret = new char[previous + 1]; 
+		char* Ret = new char[previous + 1];
 		strcpy(Ret, pArgInf->m_pText);
-		if (iArgCount>1)
+		if (iArgCount > 1)
 		{
 			for (size_t i = 1; i <= iArgCount - 1; i++)
 			{
@@ -1093,8 +1093,8 @@ EXTERN_C void eapi_fnsprintf(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArg
 				if (pArgInf[i].m_dtDataType == SDT_FLOAT) {
 
 					temp = to_string(pArgInf[i].m_float);
-					tempstr = new char[previous + temp.size()+1];
-			
+					tempstr = new char[previous + temp.size() + 1];
+
 				}
 				if (pArgInf[i].m_dtDataType == SDT_INT) {
 
@@ -1139,7 +1139,7 @@ EXTERN_C void eapi_fnsprintf(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArg
 						tempstr = new char[previous + temp.size() + 1];
 					}
 				}
-				if ( tempstr)
+				if (tempstr)
 				{
 					if (Ret) {
 						strcpy(tempstr, Ret);
@@ -1149,7 +1149,7 @@ EXTERN_C void eapi_fnsprintf(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArg
 					previous = strlen(tempstr);
 					Ret = tempstr;
 				}
-				
+
 			}
 		}
 		if (Ret)
@@ -1163,7 +1163,7 @@ EXTERN_C void eapi_fnsprintf(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArg
 	if (pArgInf->m_dtDataType == SDT_BIN) {
 		pRetData->m_dtDataType = SDT_BIN;
 		VECTORBYTE DATA = GetEbin(pArgInf->m_pBin);
-		wstring Get = wstring((WCHAR*)DATA.data,DATA.size/sizeof(wchar_t));
+		wstring Get = wstring((WCHAR*)DATA.data, DATA.size / sizeof(wchar_t));
 		int previous = Get.size();
 		WCHAR* Ret = new WCHAR[previous + 1];
 		wcscpy(Ret, Get.c_str());
@@ -1212,7 +1212,7 @@ EXTERN_C void eapi_fnsprintf(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArg
 					VECTORBYTE BIN = GetEbin(pArgInf[i].m_pBin);
 					if (BIN.data && BIN.size > 0)
 					{
-						temp = wstring((WCHAR*)BIN.data, BIN.size/ sizeof(wchar_t));
+						temp = wstring((WCHAR*)BIN.data, BIN.size / sizeof(wchar_t));
 						tempstr = new WCHAR[previous + temp.size() + 1];
 					}
 				}
@@ -1238,8 +1238,8 @@ EXTERN_C void eapi_fnsprintf(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArg
 		}
 		if (Ret)
 		{
-			
-			pRetData->m_pBin = eapi_CloneBinData((LPBYTE)Ret, previous*sizeof(wchar_t));
+
+			pRetData->m_pBin = eapi_CloneBinData((LPBYTE)Ret, previous * sizeof(wchar_t));
 			delete[]Ret;
 			return;
 		}
@@ -1380,7 +1380,7 @@ static ARG_INFO GetGroupListArg[] =
 EXTERN_C void eapi_fnGetGroupList(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	string type;
-	if (pArgInf->m_dtDataType == SDT_TEXT )
+	if (pArgInf->m_dtDataType == SDT_TEXT)
 	{
 		type = pArgInf->m_int;
 
@@ -1441,13 +1441,13 @@ EXTERN_C void eapi_fnGetComputerList(PMDATA_INF pRetData, INT iArgCount, PMDATA_
 
 EXTERN_C void eapi_fnIsConnectToInternet(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
-	
+
 	pRetData->m_bool = IsConnectToInternet();
 }
 /**************************端口检测*******************************/
 
 static ARG_INFO CheckPortArg[] =
-{ 
+{
 	{ _WT("端口"), _WT("检测的端口。"),0 , 0, SDT_SHORT, NULL,NULL},
 	{ _WT("ip地址"), _WT("置空则检测本机端口。"),0 , 0, SDT_TEXT, NULL,AS_DEFAULT_VALUE_IS_EMPTY},
 };
@@ -1469,8 +1469,8 @@ static ARG_INFO OpenSysWindowArg[] =
 };
 EXTERN_C void eapi_fnOpenSysWindow(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
-	INT Index = 0,Type=0;
-	if (pArgInf[0].m_int>0 && pArgInf[0].m_int<=17)
+	INT Index = 0, Type = 0;
+	if (pArgInf[0].m_int > 0 && pArgInf[0].m_int <= 17)
 	{
 		Type = pArgInf[0].m_int;
 	}
@@ -1478,14 +1478,14 @@ EXTERN_C void eapi_fnOpenSysWindow(PMDATA_INF pRetData, INT iArgCount, PMDATA_IN
 	{
 		Index = pArgInf[1].m_int;
 	}
-	 OpenSysWindow(Type, Index);
+	OpenSysWindow(Type, Index);
 }
 /**************************打开指定网址*******************************/
 
 static ARG_INFO OpenURLArg[] =
 {
-	{ _WT("窗口类型"), _WT(""),0 , 0, SDT_INT, NULL,AS_DEFAULT_VALUE_IS_EMPTY},
-	};
+	{ _WT("窗口类型"), _WT(""),0 , 0, SDT_TEXT, NULL,AS_DEFAULT_VALUE_IS_EMPTY},
+};
 EXTERN_C void eapi_fnOpenURL(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	OpenURL(pArgInf->m_pText);
@@ -1586,11 +1586,11 @@ static ARG_INFO SetDeskWallPaperArg[] =
 EXTERN_C void eapi_fnSetDeskWallPaper(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	string Filename; int type = 0;
-	if (pArgInf[0].m_dtDataType && pArgInf[0].m_pText  && strlen(pArgInf[0].m_pText) > 0)
+	if (pArgInf[0].m_dtDataType && pArgInf[0].m_pText && strlen(pArgInf[0].m_pText) > 0)
 	{
 		Filename = pArgInf[0].m_pText;
 	}
-	if (pArgInf[1].m_dtDataType && pArgInf[1].m_int>0 && pArgInf[1].m_int<=2)
+	if (pArgInf[1].m_dtDataType && pArgInf[1].m_int > 0 && pArgInf[1].m_int <= 2)
 	{
 		type = pArgInf[1].m_int;
 	}
@@ -1610,7 +1610,7 @@ EXTERN_C void eapi_fnSetDiaphaneity(PMDATA_INF pRetData, INT iArgCount, PMDATA_I
 	int type = 0;
 	if (!pArgInf[0].m_int)
 	{
-		pRetData->m_bool=0;
+		pRetData->m_bool = 0;
 		return;
 	}
 	HWND hWnd = (HWND)pArgInf[0].m_int;
@@ -1619,7 +1619,7 @@ EXTERN_C void eapi_fnSetDiaphaneity(PMDATA_INF pRetData, INT iArgCount, PMDATA_I
 	{
 		alpha = pArgInf[1].m_int;
 	}
-	if (pArgInf[2].m_dtDataType && pArgInf[2].m_int )
+	if (pArgInf[2].m_dtDataType && pArgInf[2].m_int)
 	{
 		key = pArgInf[2].m_int;
 	}
@@ -1676,8 +1676,8 @@ static ARG_INFO SetResolveRatioArg[] =
 };
 EXTERN_C void eapi_fnSetResolveRatio(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
-	int bit = 25,  fre = 75;
-	if (pArgInf[2].m_dtDataType )
+	int bit = 25, fre = 75;
+	if (pArgInf[2].m_dtDataType)
 	{
 		bit = pArgInf[2].m_int;
 	}
@@ -1685,7 +1685,7 @@ EXTERN_C void eapi_fnSetResolveRatio(PMDATA_INF pRetData, INT iArgCount, PMDATA_
 	{
 		fre = pArgInf[3].m_int;
 	}
-	
+
 	pRetData->m_bool = SetResolveRatio(pArgInf[0].m_int, pArgInf[1].m_int, bit, fre);
 }
 
@@ -1700,7 +1700,7 @@ static ARG_INFO ChangeUnitArg[] =
 EXTERN_C void eapi_fnChangeUnit(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	int lp = 0, wp = 2;
-	if (pArgInf[1].m_dtDataType && pArgInf[1].m_dtDataType>=0 && pArgInf[1].m_dtDataType<= 3)
+	if (pArgInf[1].m_dtDataType && pArgInf[1].m_dtDataType >= 0 && pArgInf[1].m_dtDataType <= 3)
 	{
 		lp = pArgInf[1].m_int;
 	}
@@ -1709,7 +1709,7 @@ EXTERN_C void eapi_fnChangeUnit(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF p
 		wp = pArgInf[2].m_int;
 	}
 
-	pRetData->m_bool = ChangeUnit(pArgInf[0].m_int,  lp, wp);
+	pRetData->m_bool = ChangeUnit(pArgInf[0].m_int, lp, wp);
 }
 
 /*************************取当前鼠标处颜色值*****************************/
@@ -1723,10 +1723,10 @@ static ARG_INFO GetPointRGBArg[] =
 EXTERN_C void eapi_fnGetPointRGB(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	BYTE r, g, b;
-	bool ret =GetPointRGB(&r, &g, &b);
+	bool ret = GetPointRGB(&r, &g, &b);
 	if (pArgInf[0].m_dtDataType == SDT_INT)
 	{
-		PMDATA_INF pInf = pArgInf ;
+		PMDATA_INF pInf = pArgInf;
 		*pInf->m_pInt = r;
 	}
 	if (pArgInf[1].m_dtDataType == SDT_INT)
@@ -1864,7 +1864,7 @@ EXTERN_C void eapi_fnGetWindowText(PMDATA_INF pRetData, INT iArgCount, PMDATA_IN
 
 		}
 	}
-	return ;
+	return;
 }
 /*************************取窗口类名*****************************/
 
@@ -1944,12 +1944,12 @@ EXTERN_C void eapi_fnGetShareResourceList(PMDATA_INF pRetData, INT iArgCount, PM
 	{
 		computer = pArgInf->m_pText;
 	}
-	if (pArgInf[1].m_dtDataType == SDT_INT && pArgInf[1].m_int>0 && pArgInf[1].m_int<=2)
+	if (pArgInf[1].m_dtDataType == SDT_INT && pArgInf[1].m_int > 0 && pArgInf[1].m_int <= 2)
 	{
 		type = pArgInf[1].m_int;
 
 	}
-	vector<string> List = GetShareResourceList(computer,type);
+	vector<string> List = GetShareResourceList(computer, type);
 	if (List.size() < 1)
 	{
 		pRetData->m_pAryData = E_NULLARRAY();
@@ -1976,7 +1976,7 @@ static ARG_INFO CancelNetConnectionArg[] =
 };
 EXTERN_C void eapi_fnCancelNetConnection(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
-	if (pArgInf->m_pText )
+	if (pArgInf->m_pText)
 	{
 		pRetData->m_bool = CancelNetConnection(pArgInf->m_pText);;
 	}
@@ -2011,7 +2011,7 @@ EXTERN_C void eapi_fnGetPrinterList(PMDATA_INF pRetData, INT iArgCount, PMDATA_I
 
 EXTERN_C void eapi_fnGetDefaultPrinter(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
-	pRetData->m_pText =  A2Estr(MyGetDefaultPrinter());;
+	pRetData->m_pText = A2Estr(MyGetDefaultPrinter());;
 }
 /*************************置默认打印机*****************************/
 static ARG_INFO SetDefaultPrinterArg[] =
@@ -2019,24 +2019,16 @@ static ARG_INFO SetDefaultPrinterArg[] =
 
 	{ _WT("打印机名称"), _WT("要设置为默认打印机的名称。"),0 , 0, SDT_TEXT, NULL,NULL},
 };
-EXTERN_C void eapi_fnSetDefaultPrinter(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
-{
-	if (pArgInf->m_pText)
-	{
-		pRetData->m_bool = MySetDefaultPrinter(pArgInf->m_pText);;
-		return;
-	}
-	pRetData->m_bool = 0;
-}
+
 /*************************打开打印机对话框*****************************/
 static ARG_INFO OpenPrintSetDlgArg[] =
-{ 
-	{ _WT("对话框类型"), _WT("要打开的对话框类型。可以为以下两个常量值之一：0、#接口常量.标准打印设置对话框；1、#接口常量.打印对话框；2、#接口常量.打印属性对话框。默认值为0"),0 , 0,  SDT_INT, NULL, AS_DEFAULT_VALUE_IS_EMPTY },
+{
+	  { _WT("对话框类型"), _WT("要打开的对话框类型。可以为以下两个常量值之一：0、#接口常量.标准打印设置对话框；1.打印机MFC对话框 2、#接口常量.打印属性对话框。默认值为0"),0 , 0,  SDT_INT, NULL, AS_DEFAULT_VALUE_IS_EMPTY },
 	  { _WT("打印信息"), _WT("待取得的硬盘信息"),0 , 0, DTP_PRINT, NULL, AS_RECEIVE_VAR | AS_DEFAULT_VALUE_IS_EMPTY},
 };
 EXTERN_C void eapi_fnOpenPrintSetDlg(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
-	
+
 	PMYPRINTINFO pPrintInfo = NULL;
 	INT type = 0;
 	if (pArgInf[0].m_dtDataType)
@@ -2046,7 +2038,7 @@ EXTERN_C void eapi_fnOpenPrintSetDlg(PMDATA_INF pRetData, INT iArgCount, PMDATA_
 	if (pArgInf[1].m_dtDataType)
 	{
 
-		pPrintInfo=*(PMYPRINTINFO*)pArgInf[1].m_pCompoundData;
+		pPrintInfo = *(PMYPRINTINFO*)pArgInf[1].m_pCompoundData;
 
 	}
 
@@ -2107,7 +2099,7 @@ EXTERN_C void eapi_fnGetMoniterDPI(PMDATA_INF pRetData, INT iArgCount, PMDATA_IN
 	{
 		hWnd = (HWND)pArgInf[0].m_int;
 	}
-	pRetData->m_double =  GetMoniterDPI(hWnd);
+	pRetData->m_double = GetMoniterDPI(hWnd);
 }
 
 /*************************隐藏显示鼠标*****************************/
@@ -2132,13 +2124,13 @@ static ARG_INFO GetPictureFormatArg[] =
 EXTERN_C void eapi_fnGetPictureFormat(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	HWND hWnd = 0;
-	if (pArgInf[0].m_dtDataType==SDT_TEXT && pArgInf->m_pText)
+	if (pArgInf[0].m_dtDataType == SDT_TEXT && pArgInf->m_pText)
 	{
-		
+
 		pRetData->m_pText = A2Estr(GetPictureFormat(pArgInf[0].m_pText));
 		return;
 	}
-	if (pArgInf[0].m_dtDataType == SDT_BIN )
+	if (pArgInf[0].m_dtDataType == SDT_BIN)
 	{
 		VECTORBYTE data = GetEbin(pArgInf->m_pBin);
 		pRetData->m_pText = A2Estr(GetPictureFormat(vector<BYTE>(data.data, data.data + data.size)));
@@ -2183,8 +2175,8 @@ static ARG_INFO RoundedWindowArg[] =
 };
 EXTERN_C void eapi_fnRoundedWindow(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
-	DWORD H=5,W=5 ;
-	if (pArgInf[1].m_dtDataType && pArgInf[1].m_int >0 )
+	DWORD H = 5, W = 5;
+	if (pArgInf[1].m_dtDataType && pArgInf[1].m_int > 0)
 	{
 		H = pArgInf[1].m_int;
 	}
@@ -2204,7 +2196,7 @@ static ARG_INFO SetForegroundWindowArg[] =
 {
 	{ _WT("窗口句柄"), _WT("欲修改的窗口句柄"),0 , 0, SDT_INT, NULL,NULL},
 		{ _WT("是否总在最前"), _WT("默认为假"),0 , 0, SDT_BOOL, NULL,AS_DEFAULT_VALUE_IS_EMPTY},
-			};
+};
 EXTERN_C void eapi_fnSetForegroundWindow(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	bool top = 0;;
@@ -2212,19 +2204,19 @@ EXTERN_C void eapi_fnSetForegroundWindow(PMDATA_INF pRetData, INT iArgCount, PMD
 	{
 		top = 1;
 	}
-	
+
 	HWND hWnd = (HWND)pArgInf[0].m_int, hWndInsertAfter = HWND_NOTOPMOST;
 	if (top) {
 		SetForegroundWindow(hWnd);
 		hWndInsertAfter = HWND_TOPMOST;
 	}
-	pRetData->m_bool= SetWindowPos(hWnd, hWndInsertAfter, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
-	
+	pRetData->m_bool = SetWindowPos(hWnd, hWndInsertAfter, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
+
 
 }
 EXTERN_C void eapi_fnUpPrivilegeValue(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
-	
+
 	pRetData->m_bool = UpPrivilegeValue();
 
 
@@ -2236,10 +2228,17 @@ EXTERN_C void eapi_fnUpPrivilegeValue(PMDATA_INF pRetData, INT iArgCount, PMDATA
 
 
 
+
+//以下为库定义，无需特别关注
+#ifndef __E_STATIC_LIB
+
 //静态库需要
 static const char* const CommandNames[] =
 { "eapi_fnGetKeyboardLockState",
-"eapi_fnSimulateKey","eapi_fnSimulateMouse","eapi_fnGetHDInfo","eapi_fnGetDrivesNum",
+	"eapi_fnSimulateKey",
+	"eapi_fnSimulateMouse",
+	"eapi_fnGetHDInfo",
+	"eapi_fnGetDrivesNum",
 	"eapi_fnGetDrivesList",
 	"eapi_fnPopupCdrom",
 	"eapi_fnCloseCdrom",
@@ -2266,23 +2265,74 @@ static const char* const CommandNames[] =
 	"eapi_fnGetFontList",
 	"eapi_fnAddFont",
 	"eapi_fnRemoveFont",
-	"eapi_fnGetImageWidth","eapi_fnGetImageHeight",
-	"eapi_fnGetIconFromResource","eapi_fnGetIEVersion",
+	"eapi_fnGetImageWidth",
+	"eapi_fnGetImageHeight",
+	"eapi_fnGetIconFromResource",
+	"eapi_fnGetIEVersion",
 	"eapi_fnAddButtonToIE",
-	"eapi_fnDeleteButtonFromIE","eapi_fnCreateProgramGroup",
-	"eapi_fnDeleteProgramGroup","eapi_fnCreateProgramItem","eapi_fnDeleteProgramItem","eapi_fnGetShortCutTarget","eapi_fnGetApapterList","eapi_fnGetLocalAdapterName","eapi_fnGetLocalMac"
-	,"eapi_fnGetRemoteMac","eapi_fnGetRemoteName","eapi_fnGetIpFromHostName","eapi_fnRunEmailAddr","eapi_fnGetNetList"
-	,"eapi_fnGetGroupList","eapi_fnGetComputerList","eapi_fnIsConnectToInternet","eapi_fnIsLoginNet","eapi_fnCheckPort"
-	,"eapi_fnOpenSysWindow","eapi_fnOpenURL","eapi_fnHideDesktopIcon","eapi_fnShowDesktopIcon","eapi_fnHideTaskBar","eapi_fnShowTaskBar"
-	,"eapi_fnHideClock","eapi_fnShowClock","eapi_fnHideStartButton","eapi_fnShowStartButton","eapi_fnSetDeskWallPaper",
-	"eapi_fnSetDiaphaneity","eapi_fnGetVideoList","eapi_fnGetCurVideo","eapi_fnSetResolveRatio","eapi_fnChangeUnit",
-	"eapi_fnGetPointRGB","eapi_fnSetCapture","eapi_fnReleaseCapture","eapi_fnGetScreenBitmap","eapi_fnGetAllWindowsList",
-	"eapi_fnGetWindowText","	eapi_fnGetClassName","eapi_fnGetHwndFromPoint","eapi_fnNetAddConnection","eapi_fnNetSendMessage","eapi_fnGetShareResourceList"
+	"eapi_fnDeleteButtonFromIE",
+	"eapi_fnCreateProgramGroup",
+	"eapi_fnDeleteProgramGroup",
+	"eapi_fnCreateProgramItem",
+	"eapi_fnDeleteProgramItem",
+	"eapi_fnGetShortCutTarget",
+	"eapi_fnGetApapterList",
+	"eapi_fnGetLocalAdapterName",
+	"eapi_fnGetLocalMac"
+	,"eapi_fnGetRemoteMac",
+	"eapi_fnGetRemoteName",
+	"eapi_fnGetIpFromHostName",
+	"eapi_fnRunEmailAddr",
+	"eapi_fnGetNetList"
+	,"eapi_fnGetGroupList",
+	"eapi_fnGetComputerList",
+	"eapi_fnIsConnectToInternet",
+	"eapi_fnIsLoginNet",
+	"eapi_fnCheckPort"
+	,"eapi_fnOpenSysWindow",
+	"eapi_fnOpenURL",
+	"eapi_fnHideDesktopIcon",
+	"eapi_fnShowDesktopIcon",
+	"eapi_fnHideTaskBar",
+	"eapi_fnShowTaskBar"
+	,"eapi_fnHideClock",
+	"eapi_fnShowClock",
+	"eapi_fnHideStartButton",
+	"eapi_fnShowStartButton",
+	"eapi_fnSetDeskWallPaper",
+	"eapi_fnSetDiaphaneity",
+	"eapi_fnGetVideoList",
+	"eapi_fnGetCurVideo",
+	"eapi_fnSetResolveRatio",
+	"eapi_fnChangeUnit",
+	"eapi_fnGetPointRGB",
+	"eapi_fnSetCapture",
+	"eapi_fnReleaseCapture",
+	"eapi_fnGetScreenBitmap",
+	"eapi_fnGetAllWindowsList",
+	"eapi_fnGetWindowText",
+	"eapi_fnGetClassName",
+	"eapi_fnGetHwndFromPoint",
+	"eapi_fnNetAddConnection",
+	"eapi_fnNetSendMessage",
+	"eapi_fnGetShareResourceList"
 	,"eapi_fnCancelNetConnection"
-	,"eapi_fnCancelAutoRun","eapi_fnsprintf","eapi_fnGetPrinterList","eapi_fnGetDefaultPrinter","eapi_fnSetDefaultPrinter"
-
-	,"eapi_fnOpenPrintSetDlg","eapi_fnCreateLink","eapi_fnGetMoniterDPI","eapi_fnHideCursor","eapi_fnShowCursor","eapi_fnGetPictureFormat","eapi_fnGetDiskNumber"
-	,"eapi_fnMessageBeep","eapi_fnRoundedWindow","eapi_fnSetForegroundWindow","eapi_fnSetForegroundWindow",
+	,"eapi_fnCancelAutoRun",
+	"eapi_fnsprintf",
+	"eapi_fnGetPrinterList",
+	"eapi_fnGetDefaultPrinter",
+	"eapi_fnSetDefaultPrinter"
+	,"eapi_fnOpenPrintSetDlg",
+	"eapi_fnCreateLink",
+	"eapi_fnGetMoniterDPI",
+	"eapi_fnHideCursor",
+	"eapi_fnShowCursor",
+	"eapi_fnGetPictureFormat",
+	"eapi_fnGetDiskNumber"
+	,"eapi_fnMessageBeep",
+	"eapi_fnRoundedWindow",
+	"eapi_fnSetForegroundWindow",
+	"eapi_fnSetForegroundWindow",
 };
 
 static CMD_INFO Commands[] = {
@@ -2301,91 +2351,91 @@ static CMD_INFO Commands[] = {
 		/*arg lp*/	GetKeyboardLockStateArg,
 			},
 
-			{ _WT("模拟按键"), _WT("SimulateKey"), _WT("模拟键盘的输入。"),1 , NULL, NULL , 0, LVL_SIMPLE,0 ,0 , 3, SimulateKeyArg },
-			 { _WT("模拟鼠标点击"), _WT("SimulateMouse"), _WT("模拟鼠标点击。"),1 , NULL, NULL , 0, LVL_SIMPLE,0 ,0 , 3, SimulateMouseArg },
+		{ _WT("模拟按键"), _WT("SimulateKey"), _WT("模拟键盘的输入。"),1 , NULL, NULL , 0, LVL_SIMPLE,0 ,0 , 3, SimulateKeyArg },
+		{ _WT("模拟鼠标点击"), _WT("SimulateMouse"), _WT("模拟鼠标点击。"),1 , NULL, NULL , 0, LVL_SIMPLE,0 ,0 , 3, SimulateMouseArg },
 		{ _WT("取硬盘信息"), _WT("GetHDInfo"), _WT("取硬件出厂信息。Win95/98/Me中可能无效。特殊情况下也许只能获取部分硬盘信息，其它未被成功获取的部分，将被设置为空文本或0。本命令为初级命令。"),1 , NULL,SDT_BOOL , 0, LVL_SIMPLE,0 ,0 , 2, GetHDInfoArg },
 		{ _WT("取驱动器数量"), _WT("GetDrivesNum"), _WT("取当前指定类型的驱动器数量"),1 , NULL, SDT_INT , 0, LVL_SIMPLE,0 ,0 , 1,GetDrivesNumArg },
 		{ _WT("取驱动器列表"), _WT("GetDrivesList"), _WT("取当前指定类型的驱动器列表。成功返回驱动器列表数组；失败返回空。本命令为初级命令。"),1 , CT_RETRUN_ARY_TYPE_DATA, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 , 1,GetDrivesNumArg },
-			{ _WT("弹出光驱"), _WT("PopupCdrom"), _WT("弹出光驱门,成功仅代表命令执行成功。"),1 ,  NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 , 0,0 },
-			{ _WT("关闭光驱"), _WT("CloseCdrom"), _WT("关闭光驱门，成功仅代表命令执行成功。"),1 ,  NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 , 0,0 },
-				{ _WT("取光驱盘符"), _WT("GetCdrom"), _WT("取光驱盘符。失败返回空。"),1 ,  NULL, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 , 0,0 },
-				{ _WT("光驱中是否有盘"), _WT("IsDiskInside"), _WT("光驱中是否有盘。有盘返回真；否则返回假。"),1 ,  NULL, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 , 0,0 },
-				{ _WT("取系统进程列表"), _WT("IsDiskInside"), _WT("取所有正在运行的程序列表。成功返回程序列表数组；失败返回空。本命令为初级命令。"),1 , CT_RETRUN_ARY_TYPE_DATA, DTP_PROC , 0, LVL_SIMPLE,0 ,0 , 0,0 },
-				{ _WT("终止进程"), _WT("SimulateKey"), _WT("模拟键盘的输入。"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 , 1,KillProcessArg },
-					{ _WT("取正在使用DLL列表"), _WT("GetDllList"), _WT("取所有正在使用的DLL列表。成功返回DLL列表数组；失败返回空。"),1 ,CT_RETRUN_ARY_TYPE_DATA, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 , 1,GetDllListArg },
-			{ _WT("取没有响应程序列表"), _WT("GetHungProgramList"), _WT("取没有响应程序列表。成功返回程序标题数组，失败返回空。本命令为初级命令。"),1 ,CT_RETRUN_ARY_TYPE_DATA, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 , 0,0 },
-			{ _WT("取系统信息"), _WT("GetSystemInfo"), _WT("取系统信息。"),1 ,NULL, NULL , 0, LVL_SIMPLE,0 ,0 , 1,GetSystemInfoArg },
-			{ _WT("取BIOS信息"), _WT("GetBiosInfo"), _WT("取BIOS信息。"),1 ,NULL, NULL , 0, LVL_SIMPLE,0 ,0 , 1,GetBiosInfoArg },
-			{ _WT("取文件版本信息"), _WT("GetFileVersionInfo"), _WT("取文件信息版本。"),1 ,NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 , 2,GetFileVersionInfoArg },
-			{ _WT("取CPU信息"), _WT("GetCpuInfo"), _WT("取CPU信息。"),1 ,NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 , 1,GetCpuInfoArg },
-			{ _WT("取CPU占用率"), _WT("GetCpuUsges"), _WT("取当前CPU占用率。成功返回CPU占用率；失败返回-1。Win98系统下使用本方法取得的数值可能会有误。本命令为初级命令。"),1 , NULL, SDT_DOUBLE , 0, LVL_SIMPLE,0 ,0 , 0,0 },
-			{ _WT("取内存容量信息"), _WT("GetMemoryInfo"), _WT("取内存容量信息，单位为M（兆）。"),1 , NULL, SDT_INT , 0, LVL_SIMPLE,0 ,0 , 1,GetMemoryInfoArg },
-			{ _WT("取声卡名称"), _WT("GetAudioCard"), _WT("取系统声卡名称，失败返回空"),1 , NULL, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 ,0 ,0 },
-			{ _WT("打开屏幕"), _WT("OpenMonitor"), _WT("打开屏幕"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,0 ,0 },
-			{ _WT("关闭屏幕"), _WT("CloseMonitor"), _WT("关闭屏幕"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,0 ,0 },
-	{ _WT("添加右键菜单"), _WT("AddRightMenu"), _WT("向指定作用区域文件右键后的菜单内添加选项"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,sizeof(AddRightMenuArg)/sizeof(AddRightMenuArg[0]) ,AddRightMenuArg },
-	{ _WT("删除右键菜单"), _WT("DeleteRightMenu"), _WT("删除指定标题或作用区域右键菜单"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,sizeof(DeleteRightMenuArg) / sizeof(DeleteRightMenuArg[0]) ,DeleteRightMenuArg },
-	{ _WT("设置自动运行"), _WT("SetAutoRun"), _WT("设置程序在开机时自动运行。本命令为初级命令"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,sizeof(SetAutoRunArg) / sizeof(SetAutoRunArg[0]) ,SetAutoRunArg },
-	{ _WT("删除临时文件"), _WT("DeleteTempFile"), _WT("删除指定位置的临时文件。成功返回真；失败返回假。"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,1 ,DeleteTempFileArg },
-	{ _WT("清除历史记录"), _WT("ClearHistory"), _WT("清除指定类型的历史记录。成功返回真；失败返回假。"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,1 ,ClearHistoryArg },
-	{ _WT("取系统字体列表"), _WT("GetFontList"), _WT("取系统所有字体的列表。成功返回字体数组；失败返回空。"),1 , CT_RETRUN_ARY_TYPE_DATA, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 ,0,0 },
-	{ _WT("安装字体"), _WT("AddFont"), _WT("在Windows系统中添加一种字体资源。添加完毕后，该字体即可由任何Windows应用程序调用。成功返回1,失败返回0，如加载内存资源则返回安装临时字体的句柄，字体资源进程之间不可共享，可通过删除字体提前删除资源；"),1 , NULL, SDT_INT , 0, LVL_SIMPLE,0 ,0 ,1 ,AddFontArg },
-	{ _WT("删除字体"), _WT("RemoveFont"), _WT("在从Windows系统中删除一种字体资源。提供临时字体的句柄，则会立即卸载临时字体，如删除系统的字体目前正由其他应用程序使用，则并不将其立即删除。成功返回真；失败返回假。"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,1 ,RemoveFontArg },
-	{ _WT("取图片宽度"), _WT("GetImageWidth"), _WT("取得指定图片的宽度。成功返回图片宽度；失败返回0。本命令为初级命令。"),1 , NULL, SDT_INT , 0, LVL_SIMPLE,0 ,0 ,1 ,GetImageWidthArg },
-	{ _WT("取图片高度"), _WT("GetImageHeight"), _WT("取得指定图片的宽度。成功返回图片宽度；失败返回0。本命令为初级命令。"),1 , NULL, SDT_INT , 0, LVL_SIMPLE,0 ,0 ,1 ,GetImageWidthArg },
-	{ _WT("提取资源文件图标"), _WT("GetIconFromResource"), _WT("从指定的资源文件中提取图标，并保存为ICO、BMP文件或复制到剪贴板。成功返回图标数量；失败返回0。"),1 , NULL, SDT_INT , 0, LVL_SIMPLE,0 ,0 ,sizeof(GetIconFromResourceArg)/sizeof(GetIconFromResourceArg[0]) ,GetIconFromResourceArg },
-	{ _WT("取IE版本号"), _WT("GetIEVersion"), _WT("取得IE的版本号。成功返回版本号；"),1 , NULL, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 ,0 ,0 },
-	{ _WT("添加IE工具条按钮"), _WT("AddButtonToIE"), _WT("向IE工具栏添加自己的按钮。"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,sizeof(AddButtonToIEArg) / sizeof(AddButtonToIEArg[0]) ,AddButtonToIEArg},
-	{ _WT("删除IE工具条按钮"), _WT("DeleteButtonFromIE"), _WT("向IE工具栏添加自己的按钮。"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,1 ,DeleteButtonFromIEArg},
-	{ _WT("创建程序组"), _WT("CreateProgramGroup"), _WT("在指定的位置的特殊位置创建特殊位置文件夹。成功返回真，失败返回假。"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,2 ,CreateProgramGroupArg},
+		{ _WT("弹出光驱"), _WT("PopupCdrom"), _WT("弹出光驱门,成功仅代表命令执行成功。"),1 ,  NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 , 0,0 },
+		{ _WT("关闭光驱"), _WT("CloseCdrom"), _WT("关闭光驱门，成功仅代表命令执行成功。"),1 ,  NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 , 0,0 },
+		{ _WT("取光驱盘符"), _WT("GetCdrom"), _WT("取光驱盘符。失败返回空。"),1 ,  NULL, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 , 0,0 },
+		{ _WT("光驱中是否有盘"), _WT("IsDiskInside"), _WT("光驱中是否有盘。有盘返回真；否则返回假。"),1 ,  NULL, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 , 0,0 },
+		{ _WT("取系统进程列表"), _WT("IsDiskInside"), _WT("取所有正在运行的程序列表。成功返回程序列表数组；失败返回空。本命令为初级命令。"),1 , CT_RETRUN_ARY_TYPE_DATA, DTP_PROC , 0, LVL_SIMPLE,0 ,0 , 0,0 },
+		{ _WT("终止进程"), _WT("SimulateKey"), _WT("模拟键盘的输入。"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 , 1,KillProcessArg },
+		{ _WT("取正在使用DLL列表"), _WT("GetDllList"), _WT("取所有正在使用的DLL列表。成功返回DLL列表数组；失败返回空。"),1 ,CT_RETRUN_ARY_TYPE_DATA, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 , 1,GetDllListArg },
+		{ _WT("取没有响应程序列表"), _WT("GetHungProgramList"), _WT("取没有响应程序列表。成功返回程序标题数组，失败返回空。本命令为初级命令。"),1 ,CT_RETRUN_ARY_TYPE_DATA, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 , 0,0 },
+		{ _WT("取系统信息"), _WT("GetSystemInfo"), _WT("取系统信息。"),1 ,NULL, NULL , 0, LVL_SIMPLE,0 ,0 , 1,GetSystemInfoArg },
+		{ _WT("取BIOS信息"), _WT("GetBiosInfo"), _WT("取BIOS信息。"),1 ,NULL, NULL , 0, LVL_SIMPLE,0 ,0 , 1,GetBiosInfoArg },
+		{ _WT("取文件版本信息"), _WT("GetFileVersionInfo"), _WT("取文件信息版本。"),1 ,NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 , 2,GetFileVersionInfoArg },
+		{ _WT("取CPU信息"), _WT("GetCpuInfo"), _WT("取CPU信息。"),1 ,NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 , 1,GetCpuInfoArg },
+		{ _WT("取CPU占用率"), _WT("GetCpuUsges"), _WT("取当前CPU占用率。成功返回CPU占用率；失败返回-1。Win98系统下使用本方法取得的数值可能会有误。本命令为初级命令。"),1 , NULL, SDT_DOUBLE , 0, LVL_SIMPLE,0 ,0 , 0,0 },
+		{ _WT("取内存容量信息"), _WT("GetMemoryInfo"), _WT("取内存容量信息，单位为M（兆）。"),1 , NULL, SDT_INT , 0, LVL_SIMPLE,0 ,0 , 1,GetMemoryInfoArg },
+		{ _WT("取声卡名称"), _WT("GetAudioCard"), _WT("取系统声卡名称，失败返回空"),1 , NULL, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 ,0 ,0 },
+		{ _WT("打开屏幕"), _WT("OpenMonitor"), _WT("打开屏幕"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,0 ,0 },
+		{ _WT("关闭屏幕"), _WT("CloseMonitor"), _WT("关闭屏幕"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,0 ,0 },
+		{ _WT("添加右键菜单"), _WT("AddRightMenu"), _WT("向指定作用区域文件右键后的菜单内添加选项"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,sizeof(AddRightMenuArg) / sizeof(AddRightMenuArg[0]) ,AddRightMenuArg },
+		{ _WT("删除右键菜单"), _WT("DeleteRightMenu"), _WT("删除指定标题或作用区域右键菜单"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,sizeof(DeleteRightMenuArg) / sizeof(DeleteRightMenuArg[0]) ,DeleteRightMenuArg },
+		{ _WT("设置自动运行"), _WT("SetAutoRun"), _WT("设置程序在开机时自动运行。本命令为初级命令"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,sizeof(SetAutoRunArg) / sizeof(SetAutoRunArg[0]) ,SetAutoRunArg },
+		{ _WT("删除临时文件"), _WT("DeleteTempFile"), _WT("删除指定位置的临时文件。成功返回真；失败返回假。"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,1 ,DeleteTempFileArg },
+		{ _WT("清除历史记录"), _WT("ClearHistory"), _WT("清除指定类型的历史记录。成功返回真；失败返回假。"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,1 ,ClearHistoryArg },
+		{ _WT("取系统字体列表"), _WT("GetFontList"), _WT("取系统所有字体的列表。成功返回字体数组；失败返回空。"),1 , CT_RETRUN_ARY_TYPE_DATA, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 ,0,0 },
+		{ _WT("安装字体"), _WT("AddFont"), _WT("在Windows系统中添加一种字体资源。添加完毕后，该字体即可由任何Windows应用程序调用。成功返回1,失败返回0，如加载内存资源则返回安装临时字体的句柄，字体资源进程之间不可共享，可通过删除字体提前删除资源；"),1 , NULL, SDT_INT , 0, LVL_SIMPLE,0 ,0 ,1 ,AddFontArg },
+		{ _WT("删除字体"), _WT("RemoveFont"), _WT("在从Windows系统中删除一种字体资源。提供临时字体的句柄，则会立即卸载临时字体，如删除系统的字体目前正由其他应用程序使用，则并不将其立即删除。成功返回真；失败返回假。"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,1 ,RemoveFontArg },
+		{ _WT("取图片宽度"), _WT("GetImageWidth"), _WT("取得指定图片的宽度。成功返回图片宽度；失败返回0。本命令为初级命令。"),1 , NULL, SDT_INT , 0, LVL_SIMPLE,0 ,0 ,1 ,GetImageWidthArg },
+		{ _WT("取图片高度"), _WT("GetImageHeight"), _WT("取得指定图片的宽度。成功返回图片宽度；失败返回0。本命令为初级命令。"),1 , NULL, SDT_INT , 0, LVL_SIMPLE,0 ,0 ,1 ,GetImageWidthArg },
+		{ _WT("提取资源文件图标"), _WT("GetIconFromResource"), _WT("从指定的资源文件中提取图标，并保存为ICO、BMP文件或复制到剪贴板。成功返回图标数量；失败返回0。"),1 , NULL, SDT_INT , 0, LVL_SIMPLE,0 ,0 ,sizeof(GetIconFromResourceArg) / sizeof(GetIconFromResourceArg[0]) ,GetIconFromResourceArg },
+		{ _WT("取IE版本号"), _WT("GetIEVersion"), _WT("取得IE的版本号。成功返回版本号；"),1 , NULL, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 ,0 ,0 },
+		{ _WT("添加IE工具条按钮"), _WT("AddButtonToIE"), _WT("向IE工具栏添加自己的按钮。"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,sizeof(AddButtonToIEArg) / sizeof(AddButtonToIEArg[0]) ,AddButtonToIEArg},
+		{ _WT("删除IE工具条按钮"), _WT("DeleteButtonFromIE"), _WT("向IE工具栏添加自己的按钮。"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,1 ,DeleteButtonFromIEArg},
+		{ _WT("创建程序组"), _WT("CreateProgramGroup"), _WT("在指定的位置的特殊位置创建特殊位置文件夹。成功返回真，失败返回假。"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,2 ,CreateProgramGroupArg},
 		{ _WT("删除程序组"), _WT("DeleteProgramGroupGroup"), _WT("删除指定的特殊位置建立过的程序组。成功返回真，失败返回假。"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,2, DeleteProgramGroupArg},
-	{ _WT("创建程序项"), _WT("CreateProgramItem"), _WT("在指定的特殊位置位置程序组文件夹中创建快捷方式。"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,4, CreateProgramItemArg},
-	{ _WT("删除程序项"), _WT("DeleteProgramItem"), _WT("删除指定的特殊位置程序组文件夹中的文件夹快捷方式。成功返回真，失败返回假。"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,3, DeleteProgramItemArg},
-	{ _WT("取快捷方式目标"), _WT("GetShortCutTarget"), _WT("获取指定快捷方式（.lnk）的目标和参数。成功返回目标，失败返回空。只有第一个参数为输入参数，后面的其它参数均为输出参数（可省略）。"),1 , NULL, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 ,sizeof(GetShortCutTargetArg)/sizeof(GetShortCutTargetArg[0]), GetShortCutTargetArg},
-	{ _WT("取网卡信息列表"), _WT("GetApapterList"), _WT("取得本地计算机的网卡信息列表。失败返回空"),2 , CT_RETRUN_ARY_TYPE_DATA, DTP_NETWORK  , 0, LVL_SIMPLE,0 ,0 ,0,0},
-	{ _WT("取本机网卡名"), _WT("GetLocalAdapterName"), _WT("取得本地计算机的网卡信息列表。失败返回空"),2 , NULL, SDT_TEXT  , 0, LVL_SIMPLE,0 ,0 ,1,GetLocalAdapterNameArg},
-	{ _WT("取本机网卡物理地址"), _WT("GetLocalMac"), _WT("取得本地计算机指定序号的网卡物理地址。失败返回空。"),2 , NULL, SDT_TEXT  , 0, LVL_SIMPLE,0 ,0 ,1,GetLocalAdapterNameArg},
-	{ _WT("取远程网卡物理地址"), _WT("GetRemoteMac"), _WT("根据指定的IP地址取远程机器网卡的物理地址。。失败返回空。"),2 , NULL, SDT_TEXT  , 0, LVL_SIMPLE,0 ,0 ,1,GetRemoteMacArg},
-	{ _WT("取远程机器名"), _WT("GetRemoteName"), _WT("根据指定的IP地址取远程机器名称。失败返回空"),2 , NULL, SDT_TEXT  , 0, LVL_SIMPLE,0 ,0 ,1,GetRemoteNameArg},
-	{ _WT("取IP地址"), _WT("GetRemoteName"), _WT(""),2 , NULL, SDT_TEXT  , 0, LVL_SIMPLE,0 ,0 ,1,GetRemoteNameArg},
-	{ _WT("撰写邮件"), _WT("RunEmailAddr"), _WT("调用系统默认邮箱工具并置目标邮箱为参数"),2 , NULL, NULL  , 0, LVL_SIMPLE,0 ,0 ,1,RunEmailAddrArg},
-	{ _WT("取网络类型列表"), _WT("GetNetList"), _WT("取所有的网络类型。成功返回程序列表数组；失败返回空"),2 ,CT_RETRUN_ARY_TYPE_DATA, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 , 0,0 },
-	{ _WT("取网络工作组列表"), _WT("GetGroupList"), _WT("取局域网中指定网络类型的工作组列表。成功返回列表数组；失败返回空。"),2 ,CT_RETRUN_ARY_TYPE_DATA, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 , 1,GetGroupListArg },
-	{ _WT("取网络计算机列表"), _WT("GetComputerList"), _WT("取局域网中指定工作组的计算机列表。成功返回列表数组；失败返回空。"),2 ,CT_RETRUN_ARY_TYPE_DATA, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 , 1,GetComputerListArg },
-	{ _WT("是否联网"), _WT("IsConnectToInternet"), _WT("取局域网中指定工作组的计算机列表。成功返回列表数组；失败返回空。"),2 ,CT_RETRUN_ARY_TYPE_DATA, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 , 0,0 },
-	{ _WT("是否存在网络"), _WT("IsLoginNet"), _WT("如果取是否联网推荐使用命令\"是否联网()\"检测机器是否存在网络，\"if a network is present\"，参见MSDN中对GetSystemMetrics()参数SM_NETWORK的说明）。"),2 ,CT_RETRUN_ARY_TYPE_DATA, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 , 0,0 },
-	{ _WT("端口检测"), _WT("CheckPort"), _WT(""),2 , NULL, SDT_BOOL  , 0, LVL_SIMPLE,0 ,0 ,2,CheckPortArg},
-	{ _WT("打开特殊系统窗口"), _WT("OpenSysWindow"), _WT("打开特殊的系统窗口，如控制面板。"),3 , NULL, NULL  , 0, LVL_SIMPLE,0 ,0 ,2,OpenSysWindowArg},
-	{ _WT("打开指定网址"), _WT("OpenURL"), _WT("用系统默认浏览器打开指定的网址。"),3 , NULL, NULL  , 0, LVL_SIMPLE,0 ,0 ,1,OpenURLArg},
-	{ _WT("隐藏桌面图标"), _WT("HideDesktopIcon"), _WT(""),3, NULL, NULL  , 0, LVL_SIMPLE,0 ,0 ,0,0},
-	{ _WT("显示桌面图标"), _WT("ShowDesktopIcon"), _WT(""),3 , NULL, NULL  , 0, LVL_SIMPLE,0 ,0 ,0,0},
-{ _WT("隐藏任务栏"), _WT("HideTaskBar"), _WT(""),3 , NULL, NULL  , 0, LVL_SIMPLE,0 ,0 ,0,0},
-{ _WT("显示任务栏"), _WT("ShowTaskBar"), _WT(""),3 , NULL, NULL  , 0, LVL_SIMPLE,0 ,0 ,0,0},
-{ _WT("隐藏系统时钟"), _WT("HideClock"), _WT(""),3 , NULL, NULL  , 0, LVL_SIMPLE,0 ,0 ,0,0},
-{ _WT("显示系统时钟"), _WT("ShowClock"), _WT(""),3 , NULL, NULL  , 0, LVL_SIMPLE,0 ,0 ,0,0},
-{ _WT("隐藏开始按钮"), _WT("HideStartButton"), _WT(""),3 , NULL, NULL  , 0, LVL_SIMPLE,0 ,0 ,0,0},
-{ _WT("显示开始按钮"), _WT("ShowStartButton"), _WT(""),3 , NULL, NULL  , 0, LVL_SIMPLE,0 ,0 ,0,0},
-{ _WT("设置桌面墙纸"), _WT("SetDeskWallPaper"), _WT("成功返回真；失败返回假。"),3 , NULL, SDT_BOOL  , 0, LVL_SIMPLE,0 ,0 ,2,SetDeskWallPaperArg},
-{ _WT("设置窗口透明度"), _WT("SetDiaphaneity"), _WT("成功返回真；失败返回假。"),3 , NULL, SDT_BOOL  , 0, LVL_SIMPLE,0 ,0 ,4,SetDiaphaneityArg},
-{ _WT("取显示模式列表"), _WT("GetVideoList"), _WT("取系统支持的显示模式列表(Win95/98/Me下无法取得刷新频率)。成功返回显示模式信息数组，失败返回空。"),3 , CT_RETRUN_ARY_TYPE_DATA, DTP_VIDEO  , 0, LVL_SIMPLE,0 ,0 ,0,0},
-{ _WT("取当前显示模式"), _WT("GetCurVideo"), _WT("取系统当前的显示模式(Win95/98/Me下无法取得刷新频率)。"),3 , NULL, DTP_VIDEO  , 0, LVL_SIMPLE,0 ,0 ,0,0},
-{ _WT("设置屏幕分辨率"), _WT("SetResolveRatio"), _WT(""),3 , NULL,SDT_BOOL  , 0, LVL_SIMPLE,0 ,0 ,4,SetResolveRatioArg},
-{ _WT("屏幕单位转换"), _WT("ChangeUnit"), _WT(""),3 , NULL,SDT_DOUBLE  , 0, LVL_SIMPLE,0 ,0 ,3,ChangeUnitArg},
-{ _WT("取当前鼠标处颜色值"), _WT("GetPointRGB"), _WT("取当前鼠标所在位置的RGB值。"),3 , NULL,SDT_BOOL  , 0, LVL_SIMPLE,0 ,0 ,3,GetPointRGBArg},
-{ _WT("捕获鼠标"), _WT("SetCapture"), _WT("将鼠标捕获设置到指定的窗口。在鼠标按钮按下的时候，这个窗口会为当前应用程序或整个系统接收所有鼠标输入。返回值为之前拥有鼠标捕获的窗口的句柄，如没有这样的窗口则返回空。"),3 , NULL,SDT_INT  , 0, LVL_SIMPLE,0 ,0 ,1,SetCaptureArg},
-{ _WT("释放鼠标"), _WT("ReleaseCapture"), _WT("为当前的应用程序释放鼠标捕获。成功返回真、失败返回假。"),3 , NULL,SDT_BOOL  , 0, LVL_SIMPLE,0 ,0 ,0,0},
-{ _WT("截取屏幕区域"), _WT("GetScreenBitma"), _WT("将选定的屏幕区域拷贝到位图文件、剪贴板或字节集中。如拷贝到位图文件或剪贴板，则成功返回真；失败返回假。如拷贝到字节集，则成功返回位图字节集；失败返回空。"),3 , NULL,_SDT_ALL  , 0, LVL_SIMPLE,0 ,0 ,3,GetScreenBitmapArg},
-{ _WT("取所有窗口列表"), _WT("GetAllWindowsList"), _WT("取当前打开的所有窗口列表。成功返回窗口句柄数组，失败返回空。"),3 ,  CT_RETRUN_ARY_TYPE_DATA,SDT_INT  , 0, LVL_SIMPLE,0 ,0 ,0,0},
-{ _WT("取窗口标题"), _WT("GetWindowText"), _WT("取指定窗口的标题。成功返回窗口标题，失败返回空。"),3 , NULL,SDT_TEXT  , 0, LVL_SIMPLE,0 ,0 ,1,SetCaptureArg},
-{ _WT("取窗口类名"), _WT("GetClassName"), _WT("取指定窗口的类名。成功返回窗口类名，失败返回空。"),3 , NULL,SDT_TEXT  , 0, LVL_SIMPLE,0 ,0 ,1,SetCaptureArg},
-{ _WT("取鼠标所在窗口句柄"), _WT("GetHwndFromPoint"), _WT("取鼠标所在窗口句柄。"),3 , NULL,SDT_INT  , 0, LVL_SIMPLE,0 ,0 ,0,0},
-{ _WT("映射网络驱动器"), _WT("NetAddConnection"), _WT("将指定的网络资源映射到本地驱动器。成功返回真；失败返回假。"),2 , NULL,SDT_BOOL  , 0, LVL_SIMPLE,0 ,0 ,2,NetAddConnectionArg},
-{ _WT("发送局域网消息"), _WT("NetSendMessage"), _WT("发送消息到指定的机器（即Windows信使服务，只有启动了Messenger服务的机器才能收到该命令发送的消息）。成功返回真；失败返回假。"),2 , NULL,SDT_BOOL  , 0, LVL_SIMPLE,0 ,0 ,3,NetSendMessageArg},
-{ _WT("取网络共享资源列表"), _WT("GetShareResourceList"), _WT("取局域网中指定计算机的共享资源列表。成功返回列表数组；失败返回空。"),2 ,CT_RETRUN_ARY_TYPE_DATA,SDT_TEXT  , 0, LVL_SIMPLE,0 ,0 ,2,GetShareResourceListArg},
-{ _WT("取消网络驱动器映射"), _WT("CancelNetConnection"), _WT("取消指定的网络驱动器映射。成功返回真；"),2 , NULL,SDT_BOOL  , 0, LVL_SIMPLE,0 ,0 ,1,CancelNetConnectionArg},
-{ _WT("取消自动运行"), _WT("CancelAutoRun"), _WT("取消程序的自动运行"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,1, CancelAutoRunArg},
-	{ _WT("格式化字符串"), _WT("sprintf"), _WT("将一个格式化的字符串输出到一个目的字符串中。给定unicode会返回unicode，此命令与c中sprintf相同，请遵守格式化规则，不把ansi和unicode混用"),1 ,CT_ALLOW_APPEND_NEW_ARG, _SDT_ALL , 0, LVL_SIMPLE,0 ,0 ,2, sprintfArg},
-{ _WT("取打印机列表"), _WT("GetPrinterList"), _WT("枚举系统打印机列表。"),1 ,  CT_RETRUN_ARY_TYPE_DATA,SDT_TEXT , 0, LVL_SIMPLE,0 ,0 ,0, 0},
+		{ _WT("创建程序项"), _WT("CreateProgramItem"), _WT("在指定的特殊位置位置程序组文件夹中创建快捷方式。"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,4, CreateProgramItemArg},
+		{ _WT("删除程序项"), _WT("DeleteProgramItem"), _WT("删除指定的特殊位置程序组文件夹中的文件夹快捷方式。成功返回真，失败返回假。"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,3, DeleteProgramItemArg},
+		{ _WT("取快捷方式目标"), _WT("GetShortCutTarget"), _WT("获取指定快捷方式（.lnk）的目标和参数。成功返回目标，失败返回空。只有第一个参数为输入参数，后面的其它参数均为输出参数（可省略）。"),1 , NULL, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 ,sizeof(GetShortCutTargetArg) / sizeof(GetShortCutTargetArg[0]), GetShortCutTargetArg},
+		{ _WT("取网卡信息列表"), _WT("GetApapterList"), _WT("取得本地计算机的网卡信息列表。失败返回空"),2 , CT_RETRUN_ARY_TYPE_DATA, DTP_NETWORK  , 0, LVL_SIMPLE,0 ,0 ,0,0},
+		{ _WT("取本机网卡名"), _WT("GetLocalAdapterName"), _WT("取得本地计算机的网卡信息列表。失败返回空"),2 , NULL, SDT_TEXT  , 0, LVL_SIMPLE,0 ,0 ,1,GetLocalAdapterNameArg},
+		{ _WT("取本机网卡物理地址"), _WT("GetLocalMac"), _WT("取得本地计算机指定序号的网卡物理地址。失败返回空。"),2 , NULL, SDT_TEXT  , 0, LVL_SIMPLE,0 ,0 ,1,GetLocalAdapterNameArg},
+		{ _WT("取远程网卡物理地址"), _WT("GetRemoteMac"), _WT("根据指定的IP地址取远程机器网卡的物理地址。。失败返回空。"),2 , NULL, SDT_TEXT  , 0, LVL_SIMPLE,0 ,0 ,1,GetRemoteMacArg},
+		{ _WT("取远程机器名"), _WT("GetRemoteName"), _WT("根据指定的IP地址取远程机器名称。失败返回空"),2 , NULL, SDT_TEXT  , 0, LVL_SIMPLE,0 ,0 ,1,GetRemoteNameArg},
+		{ _WT("取IP地址"), _WT("GetRemoteName"), _WT(""),2 , NULL, SDT_TEXT  , 0, LVL_SIMPLE,0 ,0 ,1,GetRemoteNameArg},
+		{ _WT("撰写邮件"), _WT("RunEmailAddr"), _WT("调用系统默认邮箱工具并置目标邮箱为参数"),2 , NULL, NULL  , 0, LVL_SIMPLE,0 ,0 ,1,RunEmailAddrArg},
+		{ _WT("取网络类型列表"), _WT("GetNetList"), _WT("取所有的网络类型。成功返回程序列表数组；失败返回空"),2 ,CT_RETRUN_ARY_TYPE_DATA, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 , 0,0 },
+		{ _WT("取网络工作组列表"), _WT("GetGroupList"), _WT("取局域网中指定网络类型的工作组列表。成功返回列表数组；失败返回空。"),2 ,CT_RETRUN_ARY_TYPE_DATA, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 , 1,GetGroupListArg },
+		{ _WT("取网络计算机列表"), _WT("GetComputerList"), _WT("取局域网中指定工作组的计算机列表。成功返回列表数组；失败返回空。"),2 ,CT_RETRUN_ARY_TYPE_DATA, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 , 1,GetComputerListArg },
+		{ _WT("是否联网"), _WT("IsConnectToInternet"), _WT("取局域网中指定工作组的计算机列表。成功返回列表数组；失败返回空。"),2 ,CT_RETRUN_ARY_TYPE_DATA, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 , 0,0 },
+		{ _WT("是否存在网络"), _WT("IsLoginNet"), _WT("如果取是否联网推荐使用命令\"是否联网()\"检测机器是否存在网络，\"if a network is present\"，参见MSDN中对GetSystemMetrics()参数SM_NETWORK的说明）。"),2 ,CT_RETRUN_ARY_TYPE_DATA, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 , 0,0 },
+		{ _WT("端口检测"), _WT("CheckPort"), _WT(""),2 , NULL, SDT_BOOL  , 0, LVL_SIMPLE,0 ,0 ,2,CheckPortArg},
+		{ _WT("打开特殊系统窗口"), _WT("OpenSysWindow"), _WT("打开特殊的系统窗口，如控制面板。"),3 , NULL, NULL  , 0, LVL_SIMPLE,0 ,0 ,2,OpenSysWindowArg},
+		{ _WT("打开指定网址"), _WT("OpenURL"), _WT("用系统默认浏览器打开指定的网址。"),3 , NULL, NULL  , 0, LVL_SIMPLE,0 ,0 ,1,OpenURLArg},
+		{ _WT("隐藏桌面图标"), _WT("HideDesktopIcon"), _WT(""),3, NULL, NULL  , 0, LVL_SIMPLE,0 ,0 ,0,0},
+		{ _WT("显示桌面图标"), _WT("ShowDesktopIcon"), _WT(""),3 , NULL, NULL  , 0, LVL_SIMPLE,0 ,0 ,0,0},
+		{ _WT("隐藏任务栏"), _WT("HideTaskBar"), _WT(""),3 , NULL, NULL  , 0, LVL_SIMPLE,0 ,0 ,0,0},
+		{ _WT("显示任务栏"), _WT("ShowTaskBar"), _WT(""),3 , NULL, NULL  , 0, LVL_SIMPLE,0 ,0 ,0,0},
+		{ _WT("隐藏系统时钟"), _WT("HideClock"), _WT(""),3 , NULL, NULL  , 0, LVL_SIMPLE,0 ,0 ,0,0},
+		{ _WT("显示系统时钟"), _WT("ShowClock"), _WT(""),3 , NULL, NULL  , 0, LVL_SIMPLE,0 ,0 ,0,0},
+		{ _WT("隐藏开始按钮"), _WT("HideStartButton"), _WT(""),3 , NULL, NULL  , 0, LVL_SIMPLE,0 ,0 ,0,0},
+		{ _WT("显示开始按钮"), _WT("ShowStartButton"), _WT(""),3 , NULL, NULL  , 0, LVL_SIMPLE,0 ,0 ,0,0},
+		{ _WT("设置桌面墙纸"), _WT("SetDeskWallPaper"), _WT("成功返回真；失败返回假。"),3 , NULL, SDT_BOOL  , 0, LVL_SIMPLE,0 ,0 ,2,SetDeskWallPaperArg},
+		{ _WT("设置窗口透明度"), _WT("SetDiaphaneity"), _WT("成功返回真；失败返回假。"),3 , NULL, SDT_BOOL  , 0, LVL_SIMPLE,0 ,0 ,4,SetDiaphaneityArg},
+		{ _WT("取显示模式列表"), _WT("GetVideoList"), _WT("取系统支持的显示模式列表(Win95/98/Me下无法取得刷新频率)。成功返回显示模式信息数组，失败返回空。"),3 , CT_RETRUN_ARY_TYPE_DATA, DTP_VIDEO  , 0, LVL_SIMPLE,0 ,0 ,0,0},
+		{ _WT("取当前显示模式"), _WT("GetCurVideo"), _WT("取系统当前的显示模式(Win95/98/Me下无法取得刷新频率)。"),3 , NULL, DTP_VIDEO  , 0, LVL_SIMPLE,0 ,0 ,0,0},
+		{ _WT("设置屏幕分辨率"), _WT("SetResolveRatio"), _WT(""),3 , NULL,SDT_BOOL  , 0, LVL_SIMPLE,0 ,0 ,4,SetResolveRatioArg},
+		{ _WT("屏幕单位转换"), _WT("ChangeUnit"), _WT(""),3 , NULL,SDT_DOUBLE  , 0, LVL_SIMPLE,0 ,0 ,3,ChangeUnitArg},
+		{ _WT("取当前鼠标处颜色值"), _WT("GetPointRGB"), _WT("取当前鼠标所在位置的RGB值。"),3 , NULL,SDT_BOOL  , 0, LVL_SIMPLE,0 ,0 ,3,GetPointRGBArg},
+		{ _WT("捕获鼠标"), _WT("SetCapture"), _WT("将鼠标捕获设置到指定的窗口。在鼠标按钮按下的时候，这个窗口会为当前应用程序或整个系统接收所有鼠标输入。返回值为之前拥有鼠标捕获的窗口的句柄，如没有这样的窗口则返回空。"),3 , NULL,SDT_INT  , 0, LVL_SIMPLE,0 ,0 ,1,SetCaptureArg},
+		{ _WT("释放鼠标"), _WT("ReleaseCapture"), _WT("为当前的应用程序释放鼠标捕获。成功返回真、失败返回假。"),3 , NULL,SDT_BOOL  , 0, LVL_SIMPLE,0 ,0 ,0,0},
+		{ _WT("截取屏幕区域"), _WT("GetScreenBitma"), _WT("将选定的屏幕区域拷贝到位图文件、剪贴板或字节集中。如拷贝到位图文件或剪贴板，则成功返回真；失败返回假。如拷贝到字节集，则成功返回位图字节集；失败返回空。"),3 , NULL,_SDT_ALL  , 0, LVL_SIMPLE,0 ,0 ,3,GetScreenBitmapArg},
+		{ _WT("取所有窗口列表"), _WT("GetAllWindowsList"), _WT("取当前打开的所有窗口列表。成功返回窗口句柄数组，失败返回空。"),3 ,  CT_RETRUN_ARY_TYPE_DATA,SDT_INT  , 0, LVL_SIMPLE,0 ,0 ,0,0},
+		{ _WT("取窗口标题"), _WT("GetWindowText"), _WT("取指定窗口的标题。成功返回窗口标题，失败返回空。"),3 , NULL,SDT_TEXT  , 0, LVL_SIMPLE,0 ,0 ,1,SetCaptureArg},
+		{ _WT("取窗口类名"), _WT("GetClassName"), _WT("取指定窗口的类名。成功返回窗口类名，失败返回空。"),3 , NULL,SDT_TEXT  , 0, LVL_SIMPLE,0 ,0 ,1,SetCaptureArg},
+		{ _WT("取鼠标所在窗口句柄"), _WT("GetHwndFromPoint"), _WT("取鼠标所在窗口句柄。"),3 , NULL,SDT_INT  , 0, LVL_SIMPLE,0 ,0 ,0,0},
+		{ _WT("映射网络驱动器"), _WT("NetAddConnection"), _WT("将指定的网络资源映射到本地驱动器。成功返回真；失败返回假。"),2 , NULL,SDT_BOOL  , 0, LVL_SIMPLE,0 ,0 ,2,NetAddConnectionArg},
+		{ _WT("发送局域网消息"), _WT("NetSendMessage"), _WT("发送消息到指定的机器（即Windows信使服务，只有启动了Messenger服务的机器才能收到该命令发送的消息）。成功返回真；失败返回假。"),2 , NULL,SDT_BOOL  , 0, LVL_SIMPLE,0 ,0 ,3,NetSendMessageArg},
+		{ _WT("取网络共享资源列表"), _WT("GetShareResourceList"), _WT("取局域网中指定计算机的共享资源列表。成功返回列表数组；失败返回空。"),2 ,CT_RETRUN_ARY_TYPE_DATA,SDT_TEXT  , 0, LVL_SIMPLE,0 ,0 ,2,GetShareResourceListArg},
+		{ _WT("取消网络驱动器映射"), _WT("CancelNetConnection"), _WT("取消指定的网络驱动器映射。成功返回真；"),2 , NULL,SDT_BOOL  , 0, LVL_SIMPLE,0 ,0 ,1,CancelNetConnectionArg},
+		{ _WT("取消自动运行"), _WT("CancelAutoRun"), _WT("取消程序的自动运行"),1 , NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,1, CancelAutoRunArg},
+		{ _WT("格式化字符串"), _WT("sprintf"), _WT("将一个格式化的字符串输出到一个目的字符串中。给定unicode会返回unicode，此命令与c中sprintf相同，请遵守格式化规则，不把ansi和unicode混用"),1 ,CT_ALLOW_APPEND_NEW_ARG, _SDT_ALL , 0, LVL_SIMPLE,0 ,0 ,2, sprintfArg},
+		{ _WT("取打印机列表"), _WT("GetPrinterList"), _WT("枚举系统打印机列表。"),1 ,  CT_RETRUN_ARY_TYPE_DATA,SDT_TEXT , 0, LVL_SIMPLE,0 ,0 ,0, 0},
 		{ _WT("取默认打印机"), _WT("GetDefaultPrinter"), _WT("取系统默认打印机。成功返回默认打印机名称，失败返回空。"),1 , 0,SDT_TEXT , 0, LVL_SIMPLE,0 ,0 ,0, 0 },
 		{ _WT("设置默认打印机"), _WT("SetDefaultPrinter"), _WT("设置系统的默认打印机。"),1 , 0,SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,1, SetDefaultPrinterArg },
 		{ _WT("打开打印机对话框"), _WT("OpenPrintSetDlg"), _WT("打开打印机设置对话框。返回1：点击了确定按钮；2：点击了取消按钮。"),1 , 0,SDT_INT , 0, LVL_SIMPLE,0 ,0 ,2, OpenPrintSetDlgArg },
@@ -2429,20 +2479,20 @@ PFN_EXECUTE_CMD ExecuteCommand[] =
 	 eapi_fnCloseMonitor,
 	 eapi_fnAddRightMenu,
 	 eapi_fnDeleteRightMenu,
-	  eapi_fnSetAutoRun,
-	  eapi_fnDeleteTempFile,
-	  eapi_fnClearHistory,
-	  eapi_fnGetFontList,
-	  eapi_fnAddFont,
-	  eapi_fnRemoveFont,
-	  eapi_fnGetImageWidth,eapi_fnGetImageHeight,
-	  eapi_fnGetIconFromResource,eapi_fnGetIEVersion,
-	  eapi_fnAddButtonToIE,
-	  eapi_fnDeleteButtonFromIE,eapi_fnCreateProgramGroup,
-	  eapi_fnDeleteProgramGroup,eapi_fnCreateProgramItem,eapi_fnDeleteProgramItem
-	  ,eapi_fnGetShortCutTarget,eapi_fnGetApapterList,eapi_fnGetLocalAdapterName,eapi_fnGetLocalMac
-	,eapi_fnGetRemoteMac,eapi_fnGetRemoteName,eapi_fnGetIpFromHostName,eapi_fnRunEmailAddr,eapi_fnGetNetList
-	,eapi_fnGetGroupList,eapi_fnGetComputerList,eapi_fnIsConnectToInternet,eapi_fnIsLoginNet,eapi_fnCheckPort
+	 eapi_fnSetAutoRun,
+	 eapi_fnDeleteTempFile,
+	 eapi_fnClearHistory,
+	 eapi_fnGetFontList,
+	 eapi_fnAddFont,
+	 eapi_fnRemoveFont,
+	 eapi_fnGetImageWidth,eapi_fnGetImageHeight,
+	 eapi_fnGetIconFromResource,eapi_fnGetIEVersion,
+	 eapi_fnAddButtonToIE,
+	 eapi_fnDeleteButtonFromIE,eapi_fnCreateProgramGroup,
+	 eapi_fnDeleteProgramGroup,eapi_fnCreateProgramItem,eapi_fnDeleteProgramItem,
+	 eapi_fnGetShortCutTarget,eapi_fnGetApapterList,eapi_fnGetLocalAdapterName,eapi_fnGetLocalMac,
+	 eapi_fnGetRemoteMac,eapi_fnGetRemoteName,eapi_fnGetIpFromHostName,eapi_fnRunEmailAddr,eapi_fnGetNetList,
+	 eapi_fnGetGroupList,eapi_fnGetComputerList,eapi_fnIsConnectToInternet,eapi_fnIsLoginNet,eapi_fnCheckPort
 	 ,eapi_fnOpenSysWindow, eapi_fnOpenURL, eapi_fnHideDesktopIcon, eapi_fnShowDesktopIcon, eapi_fnHideTaskBar, eapi_fnShowTaskBar
 	,eapi_fnHideClock,eapi_fnShowClock,eapi_fnHideStartButton,eapi_fnShowStartButton,eapi_fnSetDeskWallPaper,
 	eapi_fnSetDiaphaneity,eapi_fnGetVideoList,eapi_fnGetCurVideo,eapi_fnSetResolveRatio,eapi_fnChangeUnit,
@@ -2453,12 +2503,10 @@ PFN_EXECUTE_CMD ExecuteCommand[] =
 
 	,eapi_fnOpenPrintSetDlg,/*eapi_fnCreateLink*/eapi_fnGetMoniterDPI,eapi_fnHideCursor,eapi_fnShowCursor,eapi_fnGetPictureFormat,eapi_fnGetDiskNumber
 	,eapi_fnMessageBeep,eapi_fnRoundedWindow,eapi_fnSetForegroundWindow,eapi_fnSetForegroundWindow
-	
+
 	// 所有需要库中调用的函数
 
 };
-//以下为库定义，无需特别关注
-#ifndef __E_STATIC_LIB
 static LIB_INFO LibInfo =
 {
 
