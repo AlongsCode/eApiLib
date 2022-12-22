@@ -1566,7 +1566,7 @@ EXTERN_C void eapi_fnOpenSysWindow(PMDATA_INF pRetData, INT iArgCount, PMDATA_IN
 
 static ARG_INFO OpenURLArg[] =
 {
-	{ _WT("窗口类型"), _WT(""),0 , 0, SDT_TEXT, NULL,AS_DEFAULT_VALUE_IS_EMPTY},
+	{ _WT("网址url或文件路径"), _WT(""),0 , 0, SDT_TEXT, NULL,AS_DEFAULT_VALUE_IS_EMPTY},
 };
 EXTERN_C void eapi_fnOpenURL(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
@@ -2533,7 +2533,7 @@ static CMD_INFO Commands[] = {
 		//{ _WT("创建快捷方式"), _WT("CreateLink"), _WT("建立指定的快捷方式文件,返回是否成功."),1 , 0,SDT_BOOL , 0, LVL_SIMPLE,0 ,0 ,6, CreateLinkArg },
 		{ _WT("取屏幕DPI"), _WT("GetMoniterDPI"), _WT("返回指定窗口句柄所处显示器的当前DPI(缩放比例). hWnd: 提供所欲检查窗口句柄,为NULL表示使用桌面窗口(主显示器)."),3 , 0,SDT_DOUBLE , 0, LVL_SIMPLE,0 ,0 ,1, GetMoniterDPIArg },
 		{ _WT("隐藏鼠标"), _WT("HideCursor"), _WT("隐藏鼠标光标.注意: 每显示一次,内部计数会加一,每隐藏一次,内部计数会减一,只有当内部计数值大于等于0时,鼠标光标才会被显示."),3 , 0,0 , 0, LVL_SIMPLE,0 ,0 ,0, 0 },
-		{ _WT("隐藏鼠标"), _WT("ShowCursor"), _WT("显示鼠标光标.注意: 每显示一次,内部计数会加一,每隐藏一次,内部计数会减一,只有当内部计数值大于等于0时,鼠标光标才会被显示."),3 , 0,0 , 0, LVL_SIMPLE,0 ,0 ,0, 0 },
+		{ _WT("显示鼠标"), _WT("ShowCursor"), _WT("显示鼠标光标.注意: 每显示一次,内部计数会加一,每隐藏一次,内部计数会减一,只有当内部计数值大于等于0时,鼠标光标才会被显示."),3 , 0,0 , 0, LVL_SIMPLE,0 ,0 ,0, 0 },
 		{ _WT("取图片格式"), _WT("GetPictureFormat"), _WT("获取指定图片格式，失败返回空"),1 , 0,SDT_TEXT , 0, LVL_SIMPLE,0 ,0 ,1, GetPictureFormatArg },
 		{ _WT("取硬盘编号"), _WT("GetDiskNumber"), _WT("获取硬盘的编号（出场带的）"),1 , 0,SDT_TEXT , 0, LVL_SIMPLE,0 ,0 ,0,0 },
 		{ _WT("蜂鸣"), _WT("MessageBeep"), _WT("通过计算机媒体设备或者喇叭发出一个声音。"),1 , 0,0 , 0, LVL_SIMPLE,0 ,0 ,1,MessageBeepArg },
