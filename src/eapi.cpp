@@ -3,9 +3,91 @@
 #include"myhelp.h"
 //结构体
 
+// 接口常量  下的枚举常量成员数组
+static LIB_DATA_TYPE_ELEMENT ApiConst[] =
+{
+	/*000*/ {SDT_INT, 0, "控制面板", "CONTROL_WINDOWS", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000000},
+	/*001*/ {SDT_INT, 0, "系统属性", "SYSTEM_WINDOWS", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000001},
+	/*002*/ {SDT_INT, 0, "显示属性", "DISPLAY_WINDOWS", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000002},
+	/*003*/ {SDT_INT, 0, "辅助功能选项", "ADD_OPTIONS_WINDOWS", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000003},
+	/*004*/ {SDT_INT, 0, "添加打印机向导", "ADD_PRINTER_WINDOWS", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000004},
+	/*005*/ {SDT_INT, 0, "添加或删除程序", "ADD_AND_DEL_WINDOWS", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000005},
+	/*006*/ {SDT_INT, 0, "日期和时间属性", "DATETIME_WINDOWS", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000006},
+	/*007*/ {SDT_INT, 0, "字体文件夹", "FONTSFOLDER_WINDOWS", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000007},
+	/*008*/ {SDT_INT, 0, "游戏控制器", "GAME_SET_WINDOWS", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000008},
+	/*009*/ {SDT_INT, 0, "鼠标属性", "MOUSE_WINDOWS", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000009},
+	/*010*/ {SDT_INT, 0, "键盘属性", "KEYBORAD_WINDOWS", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x0000000A},
+	/*011*/ {SDT_INT, 0, "声音和音频属性", "MEDIA_WINDOWS", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x0000000B},
+	/*012*/ {SDT_INT, 0, "ODBC数据源管理器", "ODBC_WINDOWS", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x0000000C},
+	/*013*/ {SDT_INT, 0, "电源选项属性", "POWER_WINDOWS", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x0000000D},
+	/*014*/ {SDT_INT, 0, "区域和语言选项", "LANGUAGE_WINDOWS", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x0000000E},
+	/*015*/ {SDT_INT, 0, "互联网属性", "INTERNET_WINDOWS", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x0000000F},
+	/*016*/ {SDT_INT, 0, "用户帐号", "USERACCOUNT_WINDOWS", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000010},
+	/*017*/ {SDT_INT, 0, "系统信息对话框", "SYSTEM_INFO_DLG", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000011},
+	/*018*/ {SDT_INT, 0, "左键单击", "LeftClick", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000000},
+	/*019*/ {SDT_INT, 0, "左键双击", "LeftDblClick", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000001},
+	/*020*/ {SDT_INT, 0, "右键单击", "RightClick", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000002},
+	/*021*/ {SDT_INT, 0, "右键双击", "RightDblClick", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000003},
+	/*022*/ {SDT_INT, 0, "总物理内存", "PhysMemory", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000000},
+	/*023*/ {SDT_INT, 0, "可用物理内存", "AvailPhysMemory", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000001},
+	/*024*/ {SDT_INT, 0, "总虚拟内存", "VitualMemory", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000002},
+	/*025*/ {SDT_INT, 0, "可用虚拟内存", "AvailVitualMemory", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000003},
+	/*026*/ {SDT_INT, 0, "总页面文件", "PageFile", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000004},
+	/*027*/ {SDT_INT, 0, "可用页面文件", "AvailPageFile", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000005},
+	/*028*/ {SDT_INT, 0, "居中", "Center", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000000},
+	/*029*/ {SDT_INT, 0, "平铺", "Tile", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000001},
+	/*030*/ {SDT_INT, 0, "拉伸", "Stretch", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000002},
+	/*031*/ {SDT_INT, 0, "所有驱动器", "AllDrives", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000000},
+	/*032*/ {SDT_INT, 0, "硬盘驱动器", "HD", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000001},
+	/*033*/ {SDT_INT, 0, "光盘驱动器", "CD-ROM", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000002},
+	/*034*/ {SDT_INT, 0, "可移动驱动器", "Removable", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000003},
+	/*035*/ {SDT_INT, 0, "系统临时文件", "Temp", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000000},
+	/*036*/ {SDT_INT, 0, "IE临时文件", "IE Temp", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000001},
+	/*037*/ {SDT_INT, 0, "回收站", "Recycle", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000002},
+	/*038*/ {SDT_INT, 0, "存根文件", "Cookies", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000003},
+	/*039*/ {SDT_INT, 0, "浏览器历史地址记录", NULL, NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000000},
+	/*040*/ {SDT_INT, 0, "表单自动完成历史记录", NULL, NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000001},
+	/*041*/ {SDT_INT, 0, "自动密码历史记录", NULL, NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000002},
+	/*042*/ {SDT_INT, 0, "收藏夹", NULL, NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000003},
+	/*043*/ {SDT_INT, 0, "自动拨号历史记录", NULL, NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000004},
+	/*044*/ {SDT_INT, 0, "运行中的自动匹配历史记录", NULL, NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000005},
+	/*045*/ {SDT_INT, 0, "打开文档历史记录", NULL, NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000006},
+	/*046*/ {SDT_INT, 0, "网络连接历史记录", NULL, NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000007},
+	/*047*/ {SDT_INT, 0, "远程登录历史记录", NULL, NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000008},
+	/*048*/ {SDT_INT, 0, "浏览网址历史记录", NULL, NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000009},
+	/*049*/ {SDT_INT, 0, "数字锁定键盘灯", "Num Lock", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000000},
+	/*050*/ {SDT_INT, 0, "大小写锁定键盘灯", "Caps Lock", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000001},
+	/*051*/ {SDT_INT, 0, "滚动锁定键盘灯", "Scroll Lock", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000002},
+	/*052*/ {SDT_INT, 0, "像素", "UNIT_PT", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000000},
+	/*053*/ {SDT_INT, 0, "英寸", "UNIT_INCH", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000001},
+	/*054*/ {SDT_INT, 0, "毫米", "UNIT_MM", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000002},
+	/*055*/ {SDT_INT, 0, "厘米", "UNIT_CM", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000003},
+	/*056*/ {SDT_INT, 0, "到文件", "ToFile", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000000},
+	/*057*/ {SDT_INT, 0, "到剪贴板", "ToClipboard", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000001},
+	/*058*/ {SDT_INT, 0, "到字节集", "ToBin", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000002},
+	/*059*/ {SDT_INT, 0, "磁盘0", "Primary Controller - Master drive", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000000},
+	/*060*/ {SDT_INT, 0, "磁盘1", "Primary Controller - Slave drive", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000001},
+	/*061*/ {SDT_INT, 0, "磁盘2", "Secondary Controller - Master drive", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000002},
+	/*062*/ {SDT_INT, 0, "磁盘3", "Secondary Controller - Slave drive", NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000003},
+	/*063*/ {SDT_INT, 0, "开始菜单", NULL, NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000000},
+	/*064*/ {SDT_INT, 0, "开始菜单程序", NULL, NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000001},
+	/*065*/ {SDT_INT, 0, "桌面", NULL, NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000002},
+	/*066*/ {SDT_INT, 0, "到注册表", NULL, NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000000},
+	/*067*/ {SDT_INT, 0, "到启动组", NULL, NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000001},
+	/*068*/ {SDT_INT, 0, "计算机", NULL, NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000000},
+	/*069*/ {SDT_INT, 0, "工作组", NULL, NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000001},
+	/*070*/ {SDT_INT, 0, "广播", NULL, NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000002},
+	/*071*/ {SDT_INT, 0, "所有共享资源", NULL, NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000000},
+	/*072*/ {SDT_INT, 0, "共享目录或文件", NULL, NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000001},
+	/*073*/ {SDT_INT, 0, "共享打印机", NULL, NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000002},
+	/*074*/ {SDT_INT, 0, "网络驱动器", NULL, NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000004},
+	/*075*/ {SDT_INT, 0, "标准打印设置对话框", NULL, NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000000},
+	/*076*/ {SDT_INT, 0, "打印对话框", NULL, NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000001},
+	/*077*/ {SDT_INT, 0, "打印属性对话框", NULL, NULL, LES_HAS_DEFAULT_VALUE, (INT)0x00000002},
 
+};
 
-LIB_DATA_TYPE_ELEMENT Rect[] =
+static LIB_DATA_TYPE_ELEMENT Rect[] =
 {
 	/*{ 成员类型 ,数组成员 , 中文名称 ,英文名称 ,成员解释 ,枚举类型 ,默认值}*/
 	{ SDT_INT, NULL,_T("左边"), _T("Left"), _T("left"), NULL, },
@@ -13,7 +95,7 @@ LIB_DATA_TYPE_ELEMENT Rect[] =
 	{ SDT_INT, NULL,_T("右边"), _T("Right"), _T("right"), NULL,  },
 	{ SDT_INT, NULL,_T("底边"), _T("Bottom"), _T("bottom"), NULL,  }
 };
-LIB_DATA_TYPE_ELEMENT CpuInf[] =
+static LIB_DATA_TYPE_ELEMENT CpuInf[] =
 {
 	/*{ 成员类型 ,数组成员 , 中文名称 ,英文名称 ,成员解释 ,枚举类型 ,默认值}*/
 	{ SDT_TEXT, NULL,_T("制造商"), _T("Vendor"), NULL, NULL, },
@@ -28,7 +110,7 @@ LIB_DATA_TYPE_ELEMENT CpuInf[] =
 	{ SDT_INT, NULL,_T("核心数"), _T("NumberOfCores"), _T("单位：KB"), NULL,  },
 	{ SDT_INT, NULL,_T("线程数"), _T("ThreadCount"), _T("单位：KB"), NULL,  },
 };
-LIB_DATA_TYPE_ELEMENT SysInf[] =
+static LIB_DATA_TYPE_ELEMENT SysInf[] =
 {
 	/*{ 成员类型 ,数组成员 , 中文名称 ,英文名称 ,成员解释 ,枚举类型 ,默认值}*/
 	{ SDT_TEXT, NULL,_T("操作系统"), _T("Vendor"), NULL, NULL, },
@@ -49,7 +131,7 @@ LIB_DATA_TYPE_ELEMENT SysInf[] =
 			{ SDT_TEXT, NULL,_T("国家ISO"), _T("ProcessorName"), NULL, NULL,  },
 			{ SDT_BOOL, NULL,_T("是否为x64架构"), _T("ProcessorName"), NULL, NULL,  },
 };
-LIB_DATA_TYPE_ELEMENT FileInf[] =
+static LIB_DATA_TYPE_ELEMENT FileInf[] =
 {
 	/*{ 成员类型 ,数组成员 , 中文名称 ,英文名称 ,成员解释 ,枚举类型 ,默认值}*/
 	{ SDT_TEXT, NULL,_T("文件版本"), _T("Vendor"), NULL, NULL, },
@@ -67,7 +149,7 @@ LIB_DATA_TYPE_ELEMENT FileInf[] =
 								 { SDT_TEXT, NULL,_T("特殊构建"), _T("ProcessorName"),  _T(" 特殊编译版本说明"), NULL,  },
 
 };
-LIB_DATA_TYPE_ELEMENT BiosInf[] =
+static LIB_DATA_TYPE_ELEMENT BiosInf[] =
 {
 	/*{ 成员类型 ,数组成员 , 中文名称 ,英文名称 ,成员解释 ,枚举类型 ,默认值}*/
 	{ SDT_TEXT, NULL,_T("名称"), _T("Vendor"), NULL, NULL, },
@@ -77,7 +159,7 @@ LIB_DATA_TYPE_ELEMENT BiosInf[] =
 	   { SDT_TEXT, NULL,_T("序列号"), _T("ProcessorName"), NULL, NULL,  },
 		 { SDT_TEXT, NULL,_T("OEM信息"), _T("ProcessorName"), NULL, NULL,  },
 };
-LIB_DATA_TYPE_ELEMENT HDInf[] =
+static LIB_DATA_TYPE_ELEMENT HDInf[] =
 {
 	/*{ 成员类型 ,数组成员 , 中文名称 ,英文名称 ,成员解释 ,枚举类型 ,默认值}*/
 	{ SDT_TEXT, NULL,_T("型号"), _T("Vendor"), NULL, NULL, },
@@ -89,7 +171,7 @@ LIB_DATA_TYPE_ELEMENT HDInf[] =
 			 { SDT_INT, NULL,_T("磁头数"), _T("NumHeaders"), NULL, NULL,  },
 				 { SDT_INT, NULL,_T("柱面数"), _T("ProcessorName"), NULL, NULL,  },
 };
-LIB_DATA_TYPE_ELEMENT NetCardInf[] =
+static LIB_DATA_TYPE_ELEMENT NetCardInf[] =
 {
 	/*{ 成员类型 ,数组成员 , 中文名称 ,英文名称 ,成员解释 ,枚举类型 ,默认值}*/
 	{ SDT_TEXT, NULL,_T("网卡名称"), _T("Vendor"), NULL, NULL, },
@@ -102,7 +184,7 @@ LIB_DATA_TYPE_ELEMENT NetCardInf[] =
 				 { SDT_TEXT, NULL,_T("DHCP服务器地址"), _T("ProcessorName"), NULL, NULL,  },
 };
 
-LIB_DATA_TYPE_ELEMENT ProcInf[] =
+static LIB_DATA_TYPE_ELEMENT ProcInf[] =
 {
 	/*{ 成员类型 ,数组成员 , 中文名称 ,英文名称 ,成员解释 ,枚举类型 ,默认值}*/
 	{ SDT_INT, NULL,_T("进程标识符"), _T("Vendor"), NULL, NULL, },
@@ -112,7 +194,7 @@ LIB_DATA_TYPE_ELEMENT ProcInf[] =
 	   { SDT_INT, NULL,_T("线程优先权"), _T("ProcessorName"), NULL, NULL,  },
 		 { SDT_INT, NULL,_T("线程数"), _T("ProcessorName"), NULL, NULL,  },
 };
-LIB_DATA_TYPE_ELEMENT DisPlayInf[] =
+static LIB_DATA_TYPE_ELEMENT DisPlayInf[] =
 {
 	/*{ 成员类型 ,数组成员 , 中文名称 ,英文名称 ,成员解释 ,枚举类型 ,默认值}*/
 { SDT_INT, NULL,_T("宽度"), _T("Vendor"), NULL, NULL, },
@@ -120,7 +202,7 @@ LIB_DATA_TYPE_ELEMENT DisPlayInf[] =
 	 { SDT_INT, NULL,_T("颜色位数"), _T("ProcessorName"), NULL, NULL,  },
 	   { SDT_INT, NULL,_T("刷新频率"), _T("ProcessorName"), NULL, NULL,  },
 };
-LIB_DATA_TYPE_ELEMENT PrintInf[] =
+static LIB_DATA_TYPE_ELEMENT PrintInf[] =
 {
 	/*{ 成员类型 ,数组成员 , 中文名称 ,英文名称 ,成员解释 ,枚举类型 ,默认值}*/
 	{ SDT_TEXT, NULL,_T("打印机名称"), _T("Vendor"), NULL, NULL, },
@@ -134,7 +216,7 @@ LIB_DATA_TYPE_ELEMENT PrintInf[] =
 static LIB_DATA_TYPE_INFO DataTypes[] =
 {
 	/* { 中文名称, 英文名称, 数据描述, 索引数量, 命令索引, 对象状态, 图标索引, 事件数量, 事件指针, 属性数量, 属性指针, 界面指针, 元素数量, 元素指针 } */
-	{ _WT("接口常量"), _WT("暂空"), _WT(""),0 , NULL, NULL, 0,0 , NULL,0 , NULL, NULL,0, 0 },
+	{ _WT("接口常量"), _WT("ApiConst"), _WT(""),NULL, NULL, _DT_OS(__OS_WIN) | LDT_ENUM,0, NULL, NULL,NULL, NULL,NULL,sizeof(ApiConst) / sizeof(LIB_DATA_TYPE_ELEMENT), ApiConst},
 	{ _WT("矩形数据"), _WT("RECT"), _WT(""),0 , NULL, NULL, 0,0 , NULL,0 , NULL, NULL,sizeof(Rect) / sizeof(LIB_DATA_TYPE_ELEMENT), Rect },
 	{ _WT("CPU信息"), _WT("CpuInf"), _WT(""),0 , NULL, NULL,0 , 0, NULL,0 , NULL, NULL, sizeof(CpuInf) / sizeof(LIB_DATA_TYPE_ELEMENT) , CpuInf },
 	  { _WT("系统信息"), _WT("CpuInf"), _WT(""),0 , NULL, NULL,0 , 0, NULL,0 , NULL, NULL, sizeof(SysInf) / sizeof(LIB_DATA_TYPE_ELEMENT) , SysInf },
