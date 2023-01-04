@@ -1150,7 +1150,7 @@ EXTERN_C void eapi_fnCancelAutoRun(PMDATA_INF pRetData, INT iArgCount, PMDATA_IN
 	pRetData->m_bool = CancelAutoRun(pArgInf->m_pText);
 }
 
-/*/************************取网卡信息列表****************************/
+/*/************************格式化字符串****************************/
 static ARG_INFO sprintfArg[] =
 {
 	{ _WT("格式化字符串"), _WT("设置自动运行时的程序名称。"),0 , 0, _SDT_ALL, NULL,NULL },
@@ -2493,8 +2493,8 @@ static CMD_INFO Commands[] = {
 		{ _WT("取网络类型列表"), _WT("GetNetList"), _WT("取所有的网络类型。成功返回程序列表数组；失败返回空"),2 ,CT_RETRUN_ARY_TYPE_DATA, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 , 0,0 },
 		{ _WT("取网络工作组列表"), _WT("GetGroupList"), _WT("取局域网中指定网络类型的工作组列表。成功返回列表数组；失败返回空。"),2 ,CT_RETRUN_ARY_TYPE_DATA, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 , 1,GetGroupListArg },
 		{ _WT("取网络计算机列表"), _WT("GetComputerList"), _WT("取局域网中指定工作组的计算机列表。成功返回列表数组；失败返回空。"),2 ,CT_RETRUN_ARY_TYPE_DATA, SDT_TEXT , 0, LVL_SIMPLE,0 ,0 , 1,GetComputerListArg },
-		{ _WT("是否联网"), _WT("IsConnectToInternet"), _WT("取局域网中指定工作组的计算机列表。成功返回列表数组；失败返回空。"),2 ,CT_RETRUN_ARY_TYPE_DATA, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 , 0,0 },
-		{ _WT("是否存在网络"), _WT("IsLoginNet"), _WT("如果取是否联网推荐使用命令\"是否联网()\"检测机器是否存在网络，\"if a network is present\"，参见MSDN中对GetSystemMetrics()参数SM_NETWORK的说明）。"),2 ,CT_RETRUN_ARY_TYPE_DATA, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 , 0,0 },
+		{ _WT("是否联网"), _WT("IsConnectToInternet"), _WT("取局域网中指定工作组的计算机列表。成功返回列表数组；失败返回空。"),2 ,NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 , 0,0 },
+		{ _WT("是否存在网络"), _WT("IsLoginNet"), _WT("如果取是否联网推荐使用命令\"是否联网()\"检测机器是否存在网络，\"if a network is present\"，参见MSDN中对GetSystemMetrics()参数SM_NETWORK的说明）。"),2 ,NULL, SDT_BOOL , 0, LVL_SIMPLE,0 ,0 , 0,0 },
 		{ _WT("端口检测"), _WT("CheckPort"), _WT(""),2 , NULL, SDT_BOOL  , 0, LVL_SIMPLE,0 ,0 ,2,CheckPortArg},
 		{ _WT("打开特殊系统窗口"), _WT("OpenSysWindow"), _WT("打开特殊的系统窗口，如控制面板。"),3 , NULL, NULL  , 0, LVL_SIMPLE,0 ,0 ,2,OpenSysWindowArg},
 		{ _WT("打开指定网址"), _WT("OpenURL"), _WT("用系统默认浏览器打开指定的网址。"),3 , NULL, NULL  , 0, LVL_SIMPLE,0 ,0 ,1,OpenURLArg},
